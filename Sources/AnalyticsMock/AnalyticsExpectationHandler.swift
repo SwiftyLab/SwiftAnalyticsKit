@@ -113,7 +113,6 @@ public extension XCTestCase {
     /// - Parameters:
     ///   - event: The name of the event to expect.
     ///   - handler: The handler on which expectation registered.
-    ///   - evaluate: The callback invoked when expectation is fulfilled.
     ///   - file: The file name to use in the error message if
     ///           this expectation is not waited for. Default is the file
     ///           containing the call to this method. It is rare to provide this
@@ -126,6 +125,7 @@ public extension XCTestCase {
     ///           this expectation is not waited for. Default is the file
     ///           containing the call to this method. It is rare to provide this
     ///           parameter when calling this method.
+    ///   - evaluate: The callback invoked when expectation is fulfilled.
     ///
     /// - Returns: The created test expectation.
     /// - Important: Only one expectation can be registered per event name.
@@ -133,10 +133,10 @@ public extension XCTestCase {
     func expect<Event: AnalyticsEvent>(
         event: Event.Name,
         on handler: AnalyticsExpectationHandler<Event.Name>,
-        evaluate: @escaping (Event, Event.Metadata) throws -> Void,
-        file: StaticString = #filePath,
+        file: StaticString = #file,
         function: StaticString = #function,
-        line: UInt = #line
+        line: UInt = #line,
+        evaluate: @escaping (Event, Event.Metadata) throws -> Void
     ) -> XCTestExpectation {
         let expectation = self.expectation(description: "\(event)")
         handler.register(
@@ -177,7 +177,7 @@ public extension XCTestCase {
     func expect<EventName: Hashable>(
         event: EventName,
         on handler: AnalyticsExpectationHandler<EventName>,
-        file: StaticString = #filePath,
+        file: StaticString = #file,
         function: StaticString = #function,
         line: UInt = #line
     ) -> XCTestExpectation {

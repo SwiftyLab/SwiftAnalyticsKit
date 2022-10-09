@@ -13,9 +13,23 @@ public protocol AnalyticsEncoder<Output> {
     /// - Throws: If encoding to the output type fails.
     func encodeMetadata<T: Encodable>(_ data: T) throws -> Output
 }
-#else
+#elseif swift(>=5.5)
 /// A type that encodes analytics metadata to an output type.
 @rethrows
+public protocol AnalyticsEncoder {
+    /// The type of the encoded representation.
+    associatedtype Output
+    /// Returns an encoded representation of the value supplied.
+    ///
+    /// - Parameters:
+    ///   - data: The value to encode.
+    ///
+    /// - Returns: The encoded output.
+    /// - Throws: If encoding to the output type fails.
+    func encodeMetadata<T: Encodable>(_ data: T) throws -> Output
+}
+#else
+/// A type that encodes analytics metadata to an output type.
 public protocol AnalyticsEncoder {
     /// The type of the encoded representation.
     associatedtype Output

@@ -28,6 +28,82 @@ final class AnalyticsExpectationHandlerTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 
+    func testExpectationMultiFulfillWithoutCallback() throws {
+        let handler = AnalyticsExpectationHandler<String>()
+        let exp = expect(event: "loginScreenViewed", on: handler)
+        exp.expectedFulfillmentCount = 3
+        LoginEvent.loginScreenViewed.fire(on: handler)
+        LoginEvent.loginScreenViewed.fire(on: handler)
+        LoginEvent.loginScreenViewed.fire(on: handler)
+        waitForExpectations(timeout: 1)
+    }
+
+    func testExpectationMultiFulfillWithCallback() throws {
+        let handler = AnalyticsExpectationHandler<String>()
+        let exp = expect(event: "loginFailed", on: handler) {
+            (event: LoginFailureReason.Event, data: LoginFailureReason) in
+            XCTAssertEqual(event.group, .action)
+            XCTAssertEqual(data.reason, "failed")
+        }
+
+        exp.expectedFulfillmentCount = 3
+        LoginFailureReason(reason: "failed").send(to: handler)
+        LoginFailureReason(reason: "failed").send(to: handler)
+        LoginFailureReason(reason: "failed").send(to: handler)
+        waitForExpectations(timeout: 1)
+    }
+
+    func testInvertExpectationFulfillWithoutCallback() throws {
+        let handler = AnalyticsExpectationHandler<String>()
+        let exp = expect(event: "loginAttempted", on: handler)
+        exp.isInverted = true
+        LoginEvent.loginScreenViewed.fire(on: handler)
+        waitForExpectations(timeout: 1)
+    }
+
+    func testInvertExpectationFulfillWithCallback() throws {
+        let handler = AnalyticsExpectationHandler<String>()
+        let exp = expect(event: "messageSelected", on: handler) {
+            (event: MessageSelected.Event, data: MessageSelected) in
+            XCTAssertEqual(event.group, .action)
+            XCTAssertEqual(data.index, 10)
+        }
+
+        exp.isInverted = true
+        LoginFailureReason(reason: "failed").send(to: handler)
+        waitForExpectations(timeout: 1)
+    }
+
+    // Assert overfulfill bug-fix: https://github.com/apple/swift-corelibs-xctest/issues/351
+    // Swift 5.4 release: https://github.com/apple/swift-corelibs-xctest/commits/swift-5.4-RELEASE
+    #if (!os(Linux) && !os(Windows)) || swift(>=5.4)
+    func testExpectationOverFulfillWithoutCallback() throws {
+        let handler = AnalyticsExpectationHandler<String>()
+        let exp = expect(event: "loginScreenViewed", on: handler)
+        exp.assertForOverFulfill = false
+        LoginEvent.loginScreenViewed.fire(on: handler)
+        LoginEvent.loginScreenViewed.fire(on: handler)
+        LoginEvent.loginScreenViewed.fire(on: handler)
+        waitForExpectations(timeout: 1)
+    }
+
+    func testExpectationOverFulfillWithCallback() throws {
+        let handler = AnalyticsExpectationHandler<String>()
+        let exp = expect(event: "loginFailed", on: handler) {
+            (event: LoginFailureReason.Event, data: LoginFailureReason) in
+            XCTAssertEqual(event.group, .action)
+            XCTAssertEqual(data.reason, "failed")
+        }
+
+        exp.assertForOverFulfill = false
+        LoginFailureReason(reason: "failed").send(to: handler)
+        LoginFailureReason(reason: "failed").send(to: handler)
+        LoginFailureReason(reason: "failed").send(to: handler)
+        waitForExpectations(timeout: 1)
+    }
+    #endif
+
+    #if !os(Linux) && !os(Windows)
     func testExpectationFailWithoutCallback() throws {
         XCTExpectFailure("Fails due to expectation unfulfilled")
         let handler = AnalyticsExpectationHandler<String>()
@@ -77,31 +153,6 @@ final class AnalyticsExpectationHandlerTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 
-    func testExpectationMultiFulfillWithoutCallback() throws {
-        let handler = AnalyticsExpectationHandler<String>()
-        let exp = expect(event: "loginScreenViewed", on: handler)
-        exp.expectedFulfillmentCount = 3
-        LoginEvent.loginScreenViewed.fire(on: handler)
-        LoginEvent.loginScreenViewed.fire(on: handler)
-        LoginEvent.loginScreenViewed.fire(on: handler)
-        waitForExpectations(timeout: 1)
-    }
-
-    func testExpectationMultiFulfillWithCallback() throws {
-        let handler = AnalyticsExpectationHandler<String>()
-        let exp = expect(event: "loginFailed", on: handler) {
-            (event: LoginFailureReason.Event, data: LoginFailureReason) in
-            XCTAssertEqual(event.group, .action)
-            XCTAssertEqual(data.reason, "failed")
-        }
-
-        exp.expectedFulfillmentCount = 3
-        LoginFailureReason(reason: "failed").send(to: handler)
-        LoginFailureReason(reason: "failed").send(to: handler)
-        LoginFailureReason(reason: "failed").send(to: handler)
-        waitForExpectations(timeout: 1)
-    }
-
     func testExpectationMultiFulfillFailWithoutCallback() throws {
         XCTExpectFailure("Fails due to expectation under fulfilled")
         let handler = AnalyticsExpectationHandler<String>()
@@ -121,31 +172,6 @@ final class AnalyticsExpectationHandlerTests: XCTestCase {
         }
 
         exp.expectedFulfillmentCount = 3
-        LoginFailureReason(reason: "failed").send(to: handler)
-        waitForExpectations(timeout: 1)
-    }
-
-    func testExpectationOverFulfillWithoutCallback() throws {
-        let handler = AnalyticsExpectationHandler<String>()
-        let exp = expect(event: "loginScreenViewed", on: handler)
-        exp.assertForOverFulfill = false
-        LoginEvent.loginScreenViewed.fire(on: handler)
-        LoginEvent.loginScreenViewed.fire(on: handler)
-        LoginEvent.loginScreenViewed.fire(on: handler)
-        waitForExpectations(timeout: 1)
-    }
-
-    func testExpectationOverFulfillWithCallback() throws {
-        let handler = AnalyticsExpectationHandler<String>()
-        let exp = expect(event: "loginFailed", on: handler) {
-            (event: LoginFailureReason.Event, data: LoginFailureReason) in
-            XCTAssertEqual(event.group, .action)
-            XCTAssertEqual(data.reason, "failed")
-        }
-
-        exp.assertForOverFulfill = false
-        LoginFailureReason(reason: "failed").send(to: handler)
-        LoginFailureReason(reason: "failed").send(to: handler)
         LoginFailureReason(reason: "failed").send(to: handler)
         waitForExpectations(timeout: 1)
     }
@@ -177,27 +203,6 @@ final class AnalyticsExpectationHandlerTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 
-    func testInvertExpectationFulfillWithoutCallback() throws {
-        let handler = AnalyticsExpectationHandler<String>()
-        let exp = expect(event: "loginAttempted", on: handler)
-        exp.isInverted = true
-        LoginEvent.loginScreenViewed.fire(on: handler)
-        waitForExpectations(timeout: 1)
-    }
-
-    func testInvertExpectationFulfillWithCallback() throws {
-        let handler = AnalyticsExpectationHandler<String>()
-        let exp = expect(event: "messageSelected", on: handler) {
-            (event: MessageSelected.Event, data: MessageSelected) in
-            XCTAssertEqual(event.group, .action)
-            XCTAssertEqual(data.index, 10)
-        }
-
-        exp.isInverted = true
-        LoginFailureReason(reason: "failed").send(to: handler)
-        waitForExpectations(timeout: 1)
-    }
-
     func testInvertExpectationFulfillFailWithoutCallback() throws {
         XCTExpectFailure("Fails due to inverted expectation fulfilled")
         let handler = AnalyticsExpectationHandler<String>()
@@ -220,4 +225,5 @@ final class AnalyticsExpectationHandlerTests: XCTestCase {
         MessageSelected(index: 10).send(to: handler)
         waitForExpectations(timeout: 1)
     }
+    #endif
 }

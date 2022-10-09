@@ -127,7 +127,6 @@ public extension XCTestCase {
     /// - Parameters:
     ///   - event: The name of the event to expect.
     ///   - handler: The handler on which expectation registered.
-    ///   - evaluate: The callback invoked when expectation is fulfilled.
     ///   - file: The file name to use in the error message if
     ///           this expectation is not waited for. Default is the file
     ///           containing the call to this method. It is rare to provide this
@@ -140,13 +139,14 @@ public extension XCTestCase {
     ///           this expectation is not waited for. Default is the file
     ///           containing the call to this method. It is rare to provide this
     ///           parameter when calling this method.
+    ///   - evaluate: The callback invoked when expectation is fulfilled.
     func expect<Event: AnalyticsEvent>(
         event: Event.Name,
         on handler: AnalyticsOrderedExpectationHandler<Event.Name>,
-        evaluate: @escaping (Event, Event.Metadata) -> Void,
-        file: StaticString = #filePath,
+        file: StaticString = #file,
         function: StaticString = #function,
-        line: UInt = #line
+        line: UInt = #line,
+        evaluate: @escaping (Event, Event.Metadata) -> Void
     ) {
         let expectation = self.expectation(description: "\(event)")
         handler.register(
@@ -168,7 +168,6 @@ public extension XCTestCase {
     /// - Parameters:
     ///   - event: The name of the event to expect.
     ///   - handler: The handler on which expectation registered.
-    ///   - evaluate: The callback invoked when expectation is fulfilled.
     ///   - file: The file name to use in the error message if
     ///           this expectation is not waited for. Default is the file
     ///           containing the call to this method. It is rare to provide this
@@ -184,7 +183,7 @@ public extension XCTestCase {
     func expect<EventName: Hashable>(
         event: EventName,
         on handler: AnalyticsOrderedExpectationHandler<EventName>,
-        file: StaticString = #filePath,
+        file: StaticString = #file,
         function: StaticString = #function,
         line: UInt = #line
     ) {

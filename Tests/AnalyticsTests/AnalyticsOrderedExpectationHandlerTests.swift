@@ -28,6 +28,35 @@ final class AnalyticsOrderedExpectationHandlerTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 
+    func testMultiExpectationFulfillWithoutCallback() throws {
+        let handler = AnalyticsOrderedExpectationHandler<String>()
+        for _ in 0..<3 { expect(event: "loginScreenViewed", on: handler) }
+        for _ in 0..<3 { LoginEvent.loginScreenViewed.fire(on: handler) }
+        LoginEvent.loginAttempted.fire(on: handler)
+        LoginEvent.loginSucceeded.fire(on: handler)
+        waitForExpectations(timeout: 1)
+    }
+
+    func testMultiExpectationFulfillWithCallback() throws {
+        let handler = AnalyticsOrderedExpectationHandler<String>()
+        for i in 0..<3 {
+            expect(event: "loginFailed", on: handler) {
+                (event: LoginFailureReason.Event, data: LoginFailureReason) in
+                XCTAssertEqual(event.group, .action)
+                XCTAssertEqual(data.reason, "failed \(i)")
+            }
+        }
+
+        for i in 0..<3 {
+            LoginFailureReason(reason: "failed \(i)").send(to: handler)
+        }
+
+        MessageSelected(index: 10).send(to: handler)
+        MessageDeleted(index: 10, read: true).send(to: handler)
+        waitForExpectations(timeout: 1)
+    }
+
+    #if !os(Linux) && !os(Windows)
     func testExpectationFailWithoutCallback() throws {
         XCTExpectFailure("Fails due to expectation unfulfilled")
         let handler = AnalyticsOrderedExpectationHandler<String>()
@@ -66,34 +95,6 @@ final class AnalyticsOrderedExpectationHandlerTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 
-    func testMultiExpectationFulfillWithoutCallback() throws {
-        let handler = AnalyticsOrderedExpectationHandler<String>()
-        for _ in 0..<3 { expect(event: "loginScreenViewed", on: handler) }
-        for _ in 0..<3 { LoginEvent.loginScreenViewed.fire(on: handler) }
-        LoginEvent.loginAttempted.fire(on: handler)
-        LoginEvent.loginSucceeded.fire(on: handler)
-        waitForExpectations(timeout: 1)
-    }
-
-    func testMultiExpectationFulfillWithCallback() throws {
-        let handler = AnalyticsOrderedExpectationHandler<String>()
-        for i in 0..<3 {
-            expect(event: "loginFailed", on: handler) {
-                (event: LoginFailureReason.Event, data: LoginFailureReason) in
-                XCTAssertEqual(event.group, .action)
-                XCTAssertEqual(data.reason, "failed \(i)")
-            }
-        }
-
-        for i in 0..<3 {
-            LoginFailureReason(reason: "failed \(i)").send(to: handler)
-        }
-
-        MessageSelected(index: 10).send(to: handler)
-        MessageDeleted(index: 10, read: true).send(to: handler)
-        waitForExpectations(timeout: 1)
-    }
-
     func testMultiExpectationFulfillFailWithoutCallback() throws {
         XCTExpectFailure("Fails due to expectation unfulfilled")
         let handler = AnalyticsOrderedExpectationHandler<String>()
@@ -123,4 +124,5 @@ final class AnalyticsOrderedExpectationHandlerTests: XCTestCase {
         MessageDeleted(index: 10, read: true).send(to: handler)
         waitForExpectations(timeout: 1)
     }
+    #endif
 }

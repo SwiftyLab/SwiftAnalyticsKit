@@ -17,12 +17,6 @@ final class StandardDictionaryEncoderTests: XCTestCase {
         XCTAssertEqual(data["reason"] as? String, "f")
     }
 
-    func testInvalidType() throws {
-        XCTExpectFailure("Fails due to invalid type provided")
-        let encoder = StandardDictionaryEncoder()
-        let _ = try encoder.encodeMetadata(["data"])
-    }
-
     func testTypeErasedEmptyMetadataEncoding() throws {
         let encoder = StandardDictionaryEncoder()
         let data = try encoder.encodeMetadata(
@@ -39,9 +33,17 @@ final class StandardDictionaryEncoderTests: XCTestCase {
         XCTAssertEqual(data["reason"] as? String, "f")
     }
 
+    #if !os(Linux) && !os(Windows)
+    func testInvalidType() throws {
+        XCTExpectFailure("Fails due to invalid type provided")
+        let encoder = StandardDictionaryEncoder()
+        let _ = try encoder.encodeMetadata(["data"])
+    }
+
     func testTypeErasedInvalidType() throws {
         XCTExpectFailure("Fails due to invalid type provided")
         let encoder = StandardDictionaryEncoder()
         let _ = try encoder.encodeMetadata(AnyMetadata(with: ["data"]))
     }
+    #endif
 }

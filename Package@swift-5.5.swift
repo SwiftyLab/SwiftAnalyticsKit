@@ -1,8 +1,8 @@
-// swift-tools-version:5.0
+// swift-tools-version: 5.5
 
 import PackageDescription
 
-let darwin: [Platform] = [.macOS, .iOS, .tvOS, .watchOS]
+let darwin: [Platform] = [.macOS, .iOS, .tvOS, .watchOS, .macCatalyst]
 let xctest: LinkerSetting = .linkedFramework("XCTest", .when(platforms: darwin))
 
 let package = Package(
@@ -11,7 +11,8 @@ let package = Package(
         .iOS(.v8),
         .macOS(.v10_10),
         .tvOS(.v9),
-        .watchOS(.v2)
+        .watchOS(.v2),
+        .macCatalyst(.v13)
     ],
     products: [
         .library(name: "Analytics", targets: ["Analytics"]),

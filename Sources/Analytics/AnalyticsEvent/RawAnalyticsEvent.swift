@@ -1,3 +1,4 @@
+#if swift(>=5.7)
 /// An ``AnalyticsEvent`` type that can be initialized by name, group and configuration
 /// parameters.
 ///
@@ -17,6 +18,27 @@ public protocol RawAnalyticsEvent<Name,Metadata>: AnalyticsEvent {
         configuration: AnalyticsConfiguration
     )
 }
+#else
+/// An ``AnalyticsEvent`` type that can be initialized by name, group and configuration
+/// parameters.
+///
+/// Use this type along with ``GlobalAnalyticsMetadata`` where creating a separate
+/// ``AnalyticsEvent`` type doesn't make sense.
+public protocol RawAnalyticsEvent: AnalyticsEvent {
+    /// Creates a new analytics event with provided name, group
+    /// and configuration parameters.
+    ///
+    /// - Parameters:
+    ///   - name: The event name.
+    ///   - group: The group or set of groups event associated with.
+    ///   - configuration: The configuration of event.
+    init(
+        name: Name,
+        group: AnalyticsGroup,
+        configuration: AnalyticsConfiguration
+    )
+}
+#endif
 
 public extension RawAnalyticsEvent {
     /// Creates a new analytics event with provided name.
@@ -36,7 +58,13 @@ public extension RawAnalyticsEvent {
             configuration: DefaultConfiguration()
         )
     }
+}
 
+public extension RawAnalyticsEvent where Name: Initializable {
+    /// Creates a new empty name analytics event.
+    init() {
+        self.init(name: .init())
+    }
     /// Creates a new analytics event with provided parameters.
     ///
     /// If name isn't provided, default initializer is used for the event name.
@@ -53,15 +81,8 @@ public extension RawAnalyticsEvent {
         name: Name = .init(),
         group: AnalyticsGroup = .action,
         configuration: AnalyticsConfiguration = DefaultConfiguration()
-    ) -> Self where Name: Initializable {
+    ) -> Self {
         return Self(name: name, group: group, configuration: configuration)
-    }
-}
-
-public extension RawAnalyticsEvent where Name: Initializable {
-    /// Creates a new empty name analytics event.
-    init() {
-        self.init(name: .init())
     }
 }
 
