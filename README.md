@@ -1,2 +1,3 @@
-# SwiftAnalyticsSDK
-A Composable Analytics API for Swift
+# SwiftAnalyticsKit
+
+A Composable Analytics API for Swift.
