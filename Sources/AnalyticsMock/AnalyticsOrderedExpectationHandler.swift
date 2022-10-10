@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import Analytics
+import Analytics
 
 /// An `AnalyticsHandler` that tracks expected events by their name and order.
 ///

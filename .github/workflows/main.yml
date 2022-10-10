@@ -78,35 +78,35 @@ jobs:
       #   "swift": "5.3"
       # }
 
-  # cocoapods-test:
-  #   name: CocoaPods
-  #   uses: SwiftyLab/ci/.github/workflows/cocoapods.yml@main
-  #   with:
-  #     matrix: >
-  #       {
-  #         "include": [
-  #           {
-  #             "os": "macos-12",
-  #             "xcode": "latest-stable",
-  #             "platform": "macos"
-  #           },
-  #           {
-  #             "os": "macos-12",
-  #             "xcode": "latest-stable",
-  #             "platform": "watchos"
-  #           },
-  #           {
-  #             "os": "macos-12",
-  #             "xcode": "latest-stable",
-  #             "platform": "tvos"
-  #           },
-  #           {
-  #             "os": "macos-12",
-  #             "xcode": "latest-stable",
-  #             "platform": "ios"
-  #           }
-  #         ]
-  #       }
+  cocoapods-test:
+    name: CocoaPods
+    uses: SwiftyLab/ci/.github/workflows/cocoapods.yml@main
+    with:
+      matrix: >
+        {
+          "include": [
+            {
+              "os": "macos-12",
+              "xcode": "13.4",
+              "platform": "macos"
+            },
+            {
+              "os": "macos-12",
+              "xcode": "13.4",
+              "platform": "watchos"
+            },
+            {
+              "os": "macos-12",
+              "xcode": "13.4",
+              "platform": "tvos"
+            },
+            {
+              "os": "macos-12",
+              "xcode": "13.4",
+              "platform": "ios"
+            }
+          ]
+        }
 
   xcode-test:
     name: Xcode
@@ -146,8 +146,7 @@ jobs:
   ci:
     name: CI
     if: github.event_name == 'push'
-    needs: [swift-package-test, xcode-test]
-    # needs: [swift-package-test, xcode-test, cocoapods-test]
+    needs: [swift-package-test, xcode-test, cocoapods-test]
     # needs: [analyze, swift-package-test, xcode-test, cocoapods-test]
     uses: SwiftyLab/ci/.github/workflows/ci.yml@main
 
