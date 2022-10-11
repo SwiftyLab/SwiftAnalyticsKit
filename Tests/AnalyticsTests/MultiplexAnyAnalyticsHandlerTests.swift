@@ -1,16 +1,11 @@
-#if swift(>=5.7)
 import XCTest
 
 @testable import Analytics
 @testable import AnalyticsMock
 
-final class MultiplexAnalyticsHandlerTests: XCTestCase {
+final class MultiplexAnyAnalyticsHandlerTests: XCTestCase {
 
     func testMultiplexHandler() throws {
-        guard #available(macOS 13, iOS 16, tvOS 16, watchOS 9, *) else {
-            throw XCTSkip("Multiplex handler not available on current platform")
-        }
-
         let actionHandler = AnalyticsExpectationHandler<String>()
         let actionHandler2 = AnalyticsOrderedExpectationHandler<String>()
         let stateHandler = AnalyticsExpectationHandler<String>()
@@ -19,7 +14,7 @@ final class MultiplexAnalyticsHandlerTests: XCTestCase {
         let sensitiveHandler = AnalyticsOrderedExpectationHandler<String>()
         let allHandler = AnalyticsOrderedExpectationHandler<String>()
 
-        var mHandler = MultiplexAnalyticsHandler<String>()
+        var mHandler = MultiplexAnyAnalyticsHandler<String>()
         mHandler.register(handler: actionHandler, for: .action)
         mHandler.register(handler: actionHandler2, for: .action)
         mHandler.register(handler: stateHandler, for: .state)
@@ -41,8 +36,9 @@ final class MultiplexAnalyticsHandlerTests: XCTestCase {
         LoginEvent.loginAttempted.fire(on: mHandler)
 
         let lfa = {
-            (event: LoginFailureReason.Event, data: LoginFailureReason) in
+            (event: AnyStringAnalyticsEvent, data: AnyMetadata) in
             XCTAssertEqual(event.group, .action)
+            let data = try XCTUnwrap(data.value as? LoginFailureReason)
             XCTAssertEqual(data.reason, "failed")
         }
         expect(event: "loginFailed", on: actionHandler, evaluate: lfa)
@@ -51,8 +47,9 @@ final class MultiplexAnalyticsHandlerTests: XCTestCase {
         expect(event: "loginFailed", on: allHandler, evaluate: lfa)
         LoginFailureReason(reason: "failed").send(to: mHandler)
 
-        let upa = { (event: UserProfileData.Event, data: UserProfileData) in
+        let upa = { (event: AnyStringAnalyticsEvent, data: AnyMetadata) in
             XCTAssertEqual(event.group, .info)
+            let data = try XCTUnwrap(data.value as? UserProfileData)
             XCTAssertEqual(data.name, "Some User")
             XCTAssertEqual(data.email, "some@email.com")
         }
@@ -62,8 +59,9 @@ final class MultiplexAnalyticsHandlerTests: XCTestCase {
             to: mHandler
         )
 
-        let uia = { (event: UserIdData.Event, data: UserIdData) in
+        let uia = { (event: AnyStringAnalyticsEvent, data: AnyMetadata) in
             XCTAssertEqual(event.group, .sensitive)
+            let data = try XCTUnwrap(data.value as? UserIdData)
             XCTAssertEqual(data.id, "some_id")
         }
         expect(event: "", on: sensitiveHandler, evaluate: uia)
@@ -73,4 +71,3 @@ final class MultiplexAnalyticsHandlerTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 }
-#endif

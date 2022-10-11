@@ -64,7 +64,7 @@ public extension AnalyticsHandler {
     func track(
         event: AnyAnalyticsEvent<EventName>,
         at time: Date = .init(),
-        anyData data: Encodable
+        anyData data: AnalyticsMetadata
     ) {
         self.track(
             event: event,

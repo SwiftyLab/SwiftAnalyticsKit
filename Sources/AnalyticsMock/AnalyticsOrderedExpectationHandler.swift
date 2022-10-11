@@ -17,14 +17,14 @@ import Analytics
 /// then also test is failed.
 public final class AnalyticsOrderedExpectationHandler<
     EventName: Hashable
->: AnalyticsHandler {
+>: AnalyticsHandler, Initializable, Hashable {
     /// All the event expectations registered.
     private var handlers: [EventName: [Expectation]] = [:]
     /// A type representing an expectation with the expectation location
     /// and optional validation callback.
     fileprivate typealias Expectation = (
         (XCTestExpectation, StaticString, StaticString, UInt),
-        ((Any, Encodable) throws -> Void)?
+        ((Any, AnalyticsMetadata) throws -> Void)?
     )
 
     /// Creates a new instance of handler.
@@ -52,6 +52,30 @@ public final class AnalyticsOrderedExpectationHandler<
         expectation.fulfill()
     }
 
+    /// Returns a Boolean value indicating whether
+    /// two instances are the same.
+    ///
+    /// - Parameters:
+    ///   - lhs: An `AnalyticsOrderedExpectationHandler` instance.
+    ///   - rhs: Another `AnalyticsOrderedExpectationHandler` instance.
+    ///
+    /// - Returns: Whether two instances are the same.
+    public static func == (
+        lhs: AnalyticsOrderedExpectationHandler,
+        rhs: AnalyticsOrderedExpectationHandler
+    ) -> Bool {
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+
+    /// Hashes the current instance by feeding an unique identifier
+    /// associated into the given hasher.
+    ///
+    /// - Parameter hasher: The hasher to use when combining
+    ///                     the components of this instance.
+    public func hash(into hasher: inout Hasher) {
+        ObjectIdentifier(self).hash(into: &hasher)
+    }
+
     /// Registers expectation and callback for provided event name.
     ///
     /// - Parameters:
@@ -64,7 +88,7 @@ public final class AnalyticsOrderedExpectationHandler<
     fileprivate func register<Event: AnalyticsEvent>(
         event: Event.Name,
         expectation: XCTestExpectation,
-        evaluate: @escaping (Event, Event.Metadata) -> Void,
+        evaluate: @escaping (Event, Event.Metadata) throws -> Void,
         file: StaticString,
         function: StaticString,
         line: UInt
@@ -81,7 +105,7 @@ public final class AnalyticsOrderedExpectationHandler<
                     data as? Event.Metadata,
                     file: file, line: line
                 )
-                evaluate(event, data)
+                try evaluate(event, data)
             }
         )
         if handlers[event] != nil {
@@ -146,7 +170,7 @@ public extension XCTestCase {
         file: StaticString = #file,
         function: StaticString = #function,
         line: UInt = #line,
-        evaluate: @escaping (Event, Event.Metadata) -> Void
+        evaluate: @escaping (Event, Event.Metadata) throws -> Void
     ) {
         let expectation = self.expectation(description: "\(event)")
         handler.register(

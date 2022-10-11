@@ -16,14 +16,14 @@ import Analytics
 /// - Important: Only one expectation can be registered per event name.
 public final class AnalyticsExpectationHandler<
     EventName: Hashable
->: AnalyticsHandler {
+>: AnalyticsHandler, Initializable, Hashable {
     /// All the event expectations registered.
     private var handlers: [EventName: Expectation] = [:]
     /// A type representing an expectation with the expectation location
     /// and optional validation callback.
     fileprivate typealias Expectation = (
         (XCTestExpectation, StaticString, StaticString, UInt),
-        ((Any, Encodable) throws -> Void)?
+        ((Any, AnalyticsMetadata) throws -> Void)?
     )
 
     /// Creates a new instance of handler.
@@ -48,6 +48,30 @@ public final class AnalyticsExpectationHandler<
         else { return }
         expectation.fulfill()
         XCTAssertNoThrow(try handler?(event, data), file: file, line: line)
+    }
+
+    /// Returns a Boolean value indicating whether
+    /// two instances are the same.
+    ///
+    /// - Parameters:
+    ///   - lhs: An `AnalyticsExpectationHandler` instance.
+    ///   - rhs: Another `AnalyticsExpectationHandler` instance.
+    ///
+    /// - Returns: Whether two instances are the same.
+    public static func == (
+        lhs: AnalyticsExpectationHandler,
+        rhs: AnalyticsExpectationHandler
+    ) -> Bool {
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+
+    /// Hashes the current instance by feeding an unique identifier
+    /// associated into the given hasher.
+    ///
+    /// - Parameter hasher: The hasher to use when combining
+    ///                     the components of this instance.
+    public func hash(into hasher: inout Hasher) {
+        ObjectIdentifier(self).hash(into: &hasher)
     }
 
     /// Registers expectation and callback for provided event name.

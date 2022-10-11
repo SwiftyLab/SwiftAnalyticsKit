@@ -3,7 +3,7 @@
 ///
 /// Use this type if creating a separate type for a specific event doesn't make sense and
 /// by using ``SomeAnalyticsEvent`` with this type similar functionality can be achieved.
-public protocol GlobalAnalyticsMetadata<Event>: Encodable {
+public protocol GlobalAnalyticsMetadata<Event>: AnalyticsMetadata {
     /// The type of the event for this metadata.
     associatedtype Event: AnalyticsEvent where Event.Metadata == Self
     /// The event associated with this metadata.
@@ -21,7 +21,7 @@ public protocol GlobalAnalyticsMetadata<Event>: Encodable {
 ///
 /// Use this type if creating a separate type for a specific event doesn't make sense and
 /// by using ``SomeAnalyticsEvent`` with this type similar functionality can be achieved.
-public protocol GlobalAnalyticsMetadata: Encodable {
+public protocol GlobalAnalyticsMetadata: AnalyticsMetadata {
     /// The type of the event for this metadata.
     associatedtype Event: AnalyticsEvent where Event.Metadata == Self
     /// The event associated with this metadata.

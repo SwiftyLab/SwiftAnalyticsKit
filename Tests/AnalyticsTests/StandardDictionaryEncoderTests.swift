@@ -43,7 +43,9 @@ final class StandardDictionaryEncoderTests: XCTestCase {
     func testTypeErasedInvalidType() throws {
         XCTExpectFailure("Fails due to invalid type provided")
         let encoder = StandardDictionaryEncoder()
-        let _ = try encoder.encodeMetadata(AnyMetadata(with: ["data"]))
+        let _ = try encoder.encodeMetadata(
+            AnyMetadata(with: AnyEncodable(with: ["data"]))
+        )
     }
     #endif
 }

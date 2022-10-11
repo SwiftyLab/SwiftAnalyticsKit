@@ -9,11 +9,11 @@
 /* Begin PBXAggregateTarget section */
 		swiftanalyticskit::SwiftAnalyticsKitPackageTests::ProductTarget /* SwiftAnalyticsKitPackageTests */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_102 /* Build configuration list for PBXAggregateTarget "SwiftAnalyticsKitPackageTests" */;
+			buildConfigurationList = OBJ_114 /* Build configuration list for PBXAggregateTarget "SwiftAnalyticsKitPackageTests" */;
 			buildPhases = (
 			);
 			dependencies = (
-				OBJ_105 /* PBXTargetDependency */,
+				OBJ_117 /* PBXTargetDependency */,
 			);
 			name = SwiftAnalyticsKitPackageTests;
 			productName = SwiftAnalyticsKitPackageTests;
@@ -21,65 +21,77 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		38FEC7DFEA8B0179D7E4B2DC /* AnalyticsMock.docc in Sources */ = {isa = PBXBuildFile; fileRef = 06D8F0A88E3B2D509339F4AB /* AnalyticsMock.docc */; };
-		58FB1A62D1EBA9DFF0AAD764 /* Analytics.docc in Sources */ = {isa = PBXBuildFile; fileRef = 006791ECA8EFB71F0BBA8017 /* Analytics.docc */; };
-		OBJ_100 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_52 /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* AnalyticsEvent.swift */; };
-		OBJ_53 /* AnyAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* AnyAnalyticsEvent.swift */; };
-		OBJ_54 /* AnyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* AnyMetadata.swift */; };
-		OBJ_55 /* EmptyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* EmptyMetadata.swift */; };
-		OBJ_56 /* GlobalAnalyticsMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* GlobalAnalyticsMetadata.swift */; };
-		OBJ_57 /* Initializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Initializable.swift */; };
-		OBJ_58 /* AnalyticsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* AnalyticsConfiguration.swift */; };
-		OBJ_59 /* AnalyticsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* AnalyticsGroup.swift */; };
-		OBJ_60 /* RawAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* RawAnalyticsEvent.swift */; };
-		OBJ_61 /* SomeAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* SomeAnalyticsEvent.swift */; };
-		OBJ_62 /* AnalyticsEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* AnalyticsEncoder.swift */; };
-		OBJ_63 /* AnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* AnalyticsHandler.swift */; };
-		OBJ_64 /* MultiplexAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* MultiplexAnalyticsHandler.swift */; };
-		OBJ_71 /* AnalyticsExpectationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* AnalyticsExpectationHandler.swift */; };
-		OBJ_72 /* AnalyticsOrderedExpectationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* AnalyticsOrderedExpectationHandler.swift */; };
-		OBJ_73 /* StandardDictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* StandardDictionaryEncoder.swift */; };
-		OBJ_75 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = swiftanalyticskit::Analytics::Product /* Analytics.framework */; };
-		OBJ_82 /* AnalyticsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* AnalyticsEventTests.swift */; };
-		OBJ_83 /* AnalyticsExpectationHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* AnalyticsExpectationHandlerTests.swift */; };
-		OBJ_84 /* AnalyticsOrderedExpectationHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* AnalyticsOrderedExpectationHandlerTests.swift */; };
-		OBJ_85 /* AnyAnalyticsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* AnyAnalyticsEventTests.swift */; };
-		OBJ_86 /* MultiplexAnalyticsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* MultiplexAnalyticsHandlerTests.swift */; };
-		OBJ_87 /* SomeAnalyticsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* SomeAnalyticsEventTests.swift */; };
-		OBJ_88 /* StandardDictionaryEncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* StandardDictionaryEncoderTests.swift */; };
-		OBJ_89 /* StandardEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* StandardEvents.swift */; };
-		OBJ_91 /* AnalyticsMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = swiftanalyticskit::AnalyticsMock::Product /* AnalyticsMock.framework */; };
-		OBJ_92 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = swiftanalyticskit::Analytics::Product /* Analytics.framework */; };
+		48EC477F2F86FA0D80A797C1 /* Analytics.docc in Sources */ = {isa = PBXBuildFile; fileRef = 06E7BA98AF4D0749AB0385BA /* Analytics.docc */; };
+		FBDEBEAE08CCED057A6A5CD9 /* AnalyticsMock.docc in Sources */ = {isa = PBXBuildFile; fileRef = 15BC915F3654D1F3A26FA68B /* AnalyticsMock.docc */; };
+		OBJ_100 /* StandardDictionaryEncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* StandardDictionaryEncoderTests.swift */; };
+		OBJ_101 /* StandardEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* StandardEvents.swift */; };
+		OBJ_103 /* AnalyticsMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = swiftanalyticskit::AnalyticsMock::Product /* AnalyticsMock.framework */; };
+		OBJ_104 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = swiftanalyticskit::Analytics::Product /* Analytics.framework */; };
+		OBJ_112 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_58 /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* AnalyticsEvent.swift */; };
+		OBJ_59 /* AnyAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* AnyAnalyticsEvent.swift */; };
+		OBJ_60 /* AnalyticsMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* AnalyticsMetadata.swift */; };
+		OBJ_61 /* AnyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* AnyMetadata.swift */; };
+		OBJ_62 /* EmptyMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* EmptyMetadata.swift */; };
+		OBJ_63 /* GlobalAnalyticsMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* GlobalAnalyticsMetadata.swift */; };
+		OBJ_64 /* Initializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Initializable.swift */; };
+		OBJ_65 /* AnalyticsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* AnalyticsConfiguration.swift */; };
+		OBJ_66 /* AnalyticsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* AnalyticsGroup.swift */; };
+		OBJ_67 /* RawAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* RawAnalyticsEvent.swift */; };
+		OBJ_68 /* SomeAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* SomeAnalyticsEvent.swift */; };
+		OBJ_69 /* AnalyticsEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* AnalyticsEncoder.swift */; };
+		OBJ_70 /* AnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* AnalyticsHandler.swift */; };
+		OBJ_71 /* AnyAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* AnyAnalyticsHandler.swift */; };
+		OBJ_72 /* AnyHashableAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* AnyHashableAnalyticsHandler.swift */; };
+		OBJ_73 /* MultiplexAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* MultiplexAnalyticsHandler.swift */; };
+		OBJ_74 /* MultiplexAnyAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* MultiplexAnyAnalyticsHandler.swift */; };
+		OBJ_81 /* AnalyticsExpectationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* AnalyticsExpectationHandler.swift */; };
+		OBJ_82 /* AnalyticsOrderedExpectationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* AnalyticsOrderedExpectationHandler.swift */; };
+		OBJ_83 /* StandardDictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* StandardDictionaryEncoder.swift */; };
+		OBJ_85 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = swiftanalyticskit::Analytics::Product /* Analytics.framework */; };
+		OBJ_92 /* AnalyticsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* AnalyticsEventTests.swift */; };
+		OBJ_93 /* AnalyticsExpectationHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* AnalyticsExpectationHandlerTests.swift */; };
+		OBJ_94 /* AnalyticsOrderedExpectationHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* AnalyticsOrderedExpectationHandlerTests.swift */; };
+		OBJ_95 /* AnyAnalyticsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* AnyAnalyticsEventTests.swift */; };
+		OBJ_96 /* AnyAnalyticsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* AnyAnalyticsHandlerTests.swift */; };
+		OBJ_97 /* MultiplexAnalyticsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* MultiplexAnalyticsHandlerTests.swift */; };
+		OBJ_98 /* MultiplexAnyAnalyticsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* MultiplexAnyAnalyticsHandlerTests.swift */; };
+		OBJ_99 /* SomeAnalyticsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* SomeAnalyticsEventTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		006791ECA8EFB71F0BBA8017 /* Analytics.docc */ = {isa = PBXFileReference; includeInIndex = 1; path = Analytics.docc; sourceTree = "<group>"; };
-		06D8F0A88E3B2D509339F4AB /* AnalyticsMock.docc */ = {isa = PBXFileReference; includeInIndex = 1; path = AnalyticsMock.docc; sourceTree = "<group>"; };
+		06E7BA98AF4D0749AB0385BA /* Analytics.docc */ = {isa = PBXFileReference; includeInIndex = 1; path = Analytics.docc; sourceTree = "<group>"; };
+		15BC915F3654D1F3A26FA68B /* AnalyticsMock.docc */ = {isa = PBXFileReference; includeInIndex = 1; path = AnalyticsMock.docc; sourceTree = "<group>"; };
 		OBJ_12 /* AnalyticsEvent.swift */ = {isa = PBXFileReference; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
 		OBJ_13 /* AnyAnalyticsEvent.swift */ = {isa = PBXFileReference; path = AnyAnalyticsEvent.swift; sourceTree = "<group>"; };
-		OBJ_15 /* AnyMetadata.swift */ = {isa = PBXFileReference; path = AnyMetadata.swift; sourceTree = "<group>"; };
-		OBJ_16 /* EmptyMetadata.swift */ = {isa = PBXFileReference; path = EmptyMetadata.swift; sourceTree = "<group>"; };
-		OBJ_17 /* GlobalAnalyticsMetadata.swift */ = {isa = PBXFileReference; path = GlobalAnalyticsMetadata.swift; sourceTree = "<group>"; };
-		OBJ_18 /* Initializable.swift */ = {isa = PBXFileReference; path = Initializable.swift; sourceTree = "<group>"; };
-		OBJ_20 /* AnalyticsConfiguration.swift */ = {isa = PBXFileReference; path = AnalyticsConfiguration.swift; sourceTree = "<group>"; };
-		OBJ_21 /* AnalyticsGroup.swift */ = {isa = PBXFileReference; path = AnalyticsGroup.swift; sourceTree = "<group>"; };
-		OBJ_22 /* RawAnalyticsEvent.swift */ = {isa = PBXFileReference; path = RawAnalyticsEvent.swift; sourceTree = "<group>"; };
-		OBJ_23 /* SomeAnalyticsEvent.swift */ = {isa = PBXFileReference; path = SomeAnalyticsEvent.swift; sourceTree = "<group>"; };
-		OBJ_25 /* AnalyticsEncoder.swift */ = {isa = PBXFileReference; path = AnalyticsEncoder.swift; sourceTree = "<group>"; };
-		OBJ_26 /* AnalyticsHandler.swift */ = {isa = PBXFileReference; path = AnalyticsHandler.swift; sourceTree = "<group>"; };
-		OBJ_27 /* MultiplexAnalyticsHandler.swift */ = {isa = PBXFileReference; path = MultiplexAnalyticsHandler.swift; sourceTree = "<group>"; };
-		OBJ_29 /* AnalyticsExpectationHandler.swift */ = {isa = PBXFileReference; path = AnalyticsExpectationHandler.swift; sourceTree = "<group>"; };
-		OBJ_30 /* AnalyticsOrderedExpectationHandler.swift */ = {isa = PBXFileReference; path = AnalyticsOrderedExpectationHandler.swift; sourceTree = "<group>"; };
-		OBJ_31 /* StandardDictionaryEncoder.swift */ = {isa = PBXFileReference; path = StandardDictionaryEncoder.swift; sourceTree = "<group>"; };
-		OBJ_34 /* AnalyticsEventTests.swift */ = {isa = PBXFileReference; path = AnalyticsEventTests.swift; sourceTree = "<group>"; };
-		OBJ_35 /* AnalyticsExpectationHandlerTests.swift */ = {isa = PBXFileReference; path = AnalyticsExpectationHandlerTests.swift; sourceTree = "<group>"; };
-		OBJ_36 /* AnalyticsOrderedExpectationHandlerTests.swift */ = {isa = PBXFileReference; path = AnalyticsOrderedExpectationHandlerTests.swift; sourceTree = "<group>"; };
-		OBJ_37 /* AnyAnalyticsEventTests.swift */ = {isa = PBXFileReference; path = AnyAnalyticsEventTests.swift; sourceTree = "<group>"; };
-		OBJ_38 /* MultiplexAnalyticsHandlerTests.swift */ = {isa = PBXFileReference; path = MultiplexAnalyticsHandlerTests.swift; sourceTree = "<group>"; };
-		OBJ_39 /* SomeAnalyticsEventTests.swift */ = {isa = PBXFileReference; path = SomeAnalyticsEventTests.swift; sourceTree = "<group>"; };
-		OBJ_40 /* StandardDictionaryEncoderTests.swift */ = {isa = PBXFileReference; path = StandardDictionaryEncoderTests.swift; sourceTree = "<group>"; };
-		OBJ_41 /* StandardEvents.swift */ = {isa = PBXFileReference; path = StandardEvents.swift; sourceTree = "<group>"; };
+		OBJ_15 /* AnalyticsMetadata.swift */ = {isa = PBXFileReference; path = AnalyticsMetadata.swift; sourceTree = "<group>"; };
+		OBJ_16 /* AnyMetadata.swift */ = {isa = PBXFileReference; path = AnyMetadata.swift; sourceTree = "<group>"; };
+		OBJ_17 /* EmptyMetadata.swift */ = {isa = PBXFileReference; path = EmptyMetadata.swift; sourceTree = "<group>"; };
+		OBJ_18 /* GlobalAnalyticsMetadata.swift */ = {isa = PBXFileReference; path = GlobalAnalyticsMetadata.swift; sourceTree = "<group>"; };
+		OBJ_19 /* Initializable.swift */ = {isa = PBXFileReference; path = Initializable.swift; sourceTree = "<group>"; };
+		OBJ_21 /* AnalyticsConfiguration.swift */ = {isa = PBXFileReference; path = AnalyticsConfiguration.swift; sourceTree = "<group>"; };
+		OBJ_22 /* AnalyticsGroup.swift */ = {isa = PBXFileReference; path = AnalyticsGroup.swift; sourceTree = "<group>"; };
+		OBJ_23 /* RawAnalyticsEvent.swift */ = {isa = PBXFileReference; path = RawAnalyticsEvent.swift; sourceTree = "<group>"; };
+		OBJ_24 /* SomeAnalyticsEvent.swift */ = {isa = PBXFileReference; path = SomeAnalyticsEvent.swift; sourceTree = "<group>"; };
+		OBJ_26 /* AnalyticsEncoder.swift */ = {isa = PBXFileReference; path = AnalyticsEncoder.swift; sourceTree = "<group>"; };
+		OBJ_27 /* AnalyticsHandler.swift */ = {isa = PBXFileReference; path = AnalyticsHandler.swift; sourceTree = "<group>"; };
+		OBJ_28 /* AnyAnalyticsHandler.swift */ = {isa = PBXFileReference; path = AnyAnalyticsHandler.swift; sourceTree = "<group>"; };
+		OBJ_29 /* AnyHashableAnalyticsHandler.swift */ = {isa = PBXFileReference; path = AnyHashableAnalyticsHandler.swift; sourceTree = "<group>"; };
+		OBJ_30 /* MultiplexAnalyticsHandler.swift */ = {isa = PBXFileReference; path = MultiplexAnalyticsHandler.swift; sourceTree = "<group>"; };
+		OBJ_31 /* MultiplexAnyAnalyticsHandler.swift */ = {isa = PBXFileReference; path = MultiplexAnyAnalyticsHandler.swift; sourceTree = "<group>"; };
+		OBJ_33 /* AnalyticsExpectationHandler.swift */ = {isa = PBXFileReference; path = AnalyticsExpectationHandler.swift; sourceTree = "<group>"; };
+		OBJ_34 /* AnalyticsOrderedExpectationHandler.swift */ = {isa = PBXFileReference; path = AnalyticsOrderedExpectationHandler.swift; sourceTree = "<group>"; };
+		OBJ_35 /* StandardDictionaryEncoder.swift */ = {isa = PBXFileReference; path = StandardDictionaryEncoder.swift; sourceTree = "<group>"; };
+		OBJ_38 /* AnalyticsEventTests.swift */ = {isa = PBXFileReference; path = AnalyticsEventTests.swift; sourceTree = "<group>"; };
+		OBJ_39 /* AnalyticsExpectationHandlerTests.swift */ = {isa = PBXFileReference; path = AnalyticsExpectationHandlerTests.swift; sourceTree = "<group>"; };
+		OBJ_40 /* AnalyticsOrderedExpectationHandlerTests.swift */ = {isa = PBXFileReference; path = AnalyticsOrderedExpectationHandlerTests.swift; sourceTree = "<group>"; };
+		OBJ_41 /* AnyAnalyticsEventTests.swift */ = {isa = PBXFileReference; path = AnyAnalyticsEventTests.swift; sourceTree = "<group>"; };
+		OBJ_42 /* AnyAnalyticsHandlerTests.swift */ = {isa = PBXFileReference; path = AnyAnalyticsHandlerTests.swift; sourceTree = "<group>"; };
+		OBJ_43 /* MultiplexAnalyticsHandlerTests.swift */ = {isa = PBXFileReference; path = MultiplexAnalyticsHandlerTests.swift; sourceTree = "<group>"; };
+		OBJ_44 /* MultiplexAnyAnalyticsHandlerTests.swift */ = {isa = PBXFileReference; path = MultiplexAnyAnalyticsHandlerTests.swift; sourceTree = "<group>"; };
+		OBJ_45 /* SomeAnalyticsEventTests.swift */ = {isa = PBXFileReference; path = SomeAnalyticsEventTests.swift; sourceTree = "<group>"; };
+		OBJ_46 /* StandardDictionaryEncoderTests.swift */ = {isa = PBXFileReference; path = StandardDictionaryEncoderTests.swift; sourceTree = "<group>"; };
+		OBJ_47 /* StandardEvents.swift */ = {isa = PBXFileReference; path = StandardEvents.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_8 /* SwiftAnalyticsKit.xcconfig */ = {isa = PBXFileReference; name = SwiftAnalyticsKit.xcconfig; path = Helpers/SwiftAnalyticsKit.xcconfig; sourceTree = "<group>"; };
 		swiftanalyticskit::Analytics::Product /* Analytics.framework */ = {isa = PBXFileReference; path = Analytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,22 +100,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_65 /* Frameworks */ = {
+		OBJ_102 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				OBJ_103 /* AnalyticsMock.framework in Frameworks */,
+				OBJ_104 /* Analytics.framework in Frameworks */,
+			);
+		};
+		OBJ_75 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
 		};
-		OBJ_74 /* Frameworks */ = {
+		OBJ_84 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				OBJ_75 /* Analytics.framework in Frameworks */,
-			);
-		};
-		OBJ_90 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				OBJ_91 /* AnalyticsMock.framework in Frameworks */,
-				OBJ_92 /* Analytics.framework in Frameworks */,
+				OBJ_85 /* Analytics.framework in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -113,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_11 /* AnalyticsEvent */,
-				OBJ_24 /* AnalyticsHandler */,
-				006791ECA8EFB71F0BBA8017 /* Analytics.docc */,
+				OBJ_25 /* AnalyticsHandler */,
+				06E7BA98AF4D0749AB0385BA /* Analytics.docc */,
 			);
 			name = Analytics;
 			path = Sources/Analytics;
@@ -126,9 +138,9 @@
 				OBJ_12 /* AnalyticsEvent.swift */,
 				OBJ_13 /* AnyAnalyticsEvent.swift */,
 				OBJ_14 /* Metadata */,
-				OBJ_19 /* Properties */,
-				OBJ_22 /* RawAnalyticsEvent.swift */,
-				OBJ_23 /* SomeAnalyticsEvent.swift */,
+				OBJ_20 /* Properties */,
+				OBJ_23 /* RawAnalyticsEvent.swift */,
+				OBJ_24 /* SomeAnalyticsEvent.swift */,
 			);
 			name = AnalyticsEvent;
 			path = AnalyticsEvent;
@@ -137,74 +149,80 @@
 		OBJ_14 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_15 /* AnyMetadata.swift */,
-				OBJ_16 /* EmptyMetadata.swift */,
-				OBJ_17 /* GlobalAnalyticsMetadata.swift */,
-				OBJ_18 /* Initializable.swift */,
+				OBJ_15 /* AnalyticsMetadata.swift */,
+				OBJ_16 /* AnyMetadata.swift */,
+				OBJ_17 /* EmptyMetadata.swift */,
+				OBJ_18 /* GlobalAnalyticsMetadata.swift */,
+				OBJ_19 /* Initializable.swift */,
 			);
 			name = Metadata;
 			path = Metadata;
 			sourceTree = "<group>";
 		};
-		OBJ_19 /* Properties */ = {
+		OBJ_20 /* Properties */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_20 /* AnalyticsConfiguration.swift */,
-				OBJ_21 /* AnalyticsGroup.swift */,
+				OBJ_21 /* AnalyticsConfiguration.swift */,
+				OBJ_22 /* AnalyticsGroup.swift */,
 			);
 			name = Properties;
 			path = Properties;
 			sourceTree = "<group>";
 		};
-		OBJ_24 /* AnalyticsHandler */ = {
+		OBJ_25 /* AnalyticsHandler */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_25 /* AnalyticsEncoder.swift */,
-				OBJ_26 /* AnalyticsHandler.swift */,
-				OBJ_27 /* MultiplexAnalyticsHandler.swift */,
+				OBJ_26 /* AnalyticsEncoder.swift */,
+				OBJ_27 /* AnalyticsHandler.swift */,
+				OBJ_28 /* AnyAnalyticsHandler.swift */,
+				OBJ_29 /* AnyHashableAnalyticsHandler.swift */,
+				OBJ_30 /* MultiplexAnalyticsHandler.swift */,
+				OBJ_31 /* MultiplexAnyAnalyticsHandler.swift */,
 			);
 			name = AnalyticsHandler;
 			path = AnalyticsHandler;
 			sourceTree = "<group>";
 		};
-		OBJ_28 /* AnalyticsMock */ = {
+		OBJ_32 /* AnalyticsMock */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_29 /* AnalyticsExpectationHandler.swift */,
-				OBJ_30 /* AnalyticsOrderedExpectationHandler.swift */,
-				OBJ_31 /* StandardDictionaryEncoder.swift */,
-				06D8F0A88E3B2D509339F4AB /* AnalyticsMock.docc */,
+				OBJ_33 /* AnalyticsExpectationHandler.swift */,
+				OBJ_34 /* AnalyticsOrderedExpectationHandler.swift */,
+				OBJ_35 /* StandardDictionaryEncoder.swift */,
+				15BC915F3654D1F3A26FA68B /* AnalyticsMock.docc */,
 			);
 			name = AnalyticsMock;
 			path = Sources/AnalyticsMock;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_32 /* Tests */ = {
+		OBJ_36 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_33 /* AnalyticsTests */,
+				OBJ_37 /* AnalyticsTests */,
 			);
 			name = Tests;
 			path = "";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_33 /* AnalyticsTests */ = {
+		OBJ_37 /* AnalyticsTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_34 /* AnalyticsEventTests.swift */,
-				OBJ_35 /* AnalyticsExpectationHandlerTests.swift */,
-				OBJ_36 /* AnalyticsOrderedExpectationHandlerTests.swift */,
-				OBJ_37 /* AnyAnalyticsEventTests.swift */,
-				OBJ_38 /* MultiplexAnalyticsHandlerTests.swift */,
-				OBJ_39 /* SomeAnalyticsEventTests.swift */,
-				OBJ_40 /* StandardDictionaryEncoderTests.swift */,
-				OBJ_41 /* StandardEvents.swift */,
+				OBJ_38 /* AnalyticsEventTests.swift */,
+				OBJ_39 /* AnalyticsExpectationHandlerTests.swift */,
+				OBJ_40 /* AnalyticsOrderedExpectationHandlerTests.swift */,
+				OBJ_41 /* AnyAnalyticsEventTests.swift */,
+				OBJ_42 /* AnyAnalyticsHandlerTests.swift */,
+				OBJ_43 /* MultiplexAnalyticsHandlerTests.swift */,
+				OBJ_44 /* MultiplexAnyAnalyticsHandlerTests.swift */,
+				OBJ_45 /* SomeAnalyticsEventTests.swift */,
+				OBJ_46 /* StandardDictionaryEncoderTests.swift */,
+				OBJ_47 /* StandardEvents.swift */,
 			);
 			name = AnalyticsTests;
 			path = Tests/AnalyticsTests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_42 /* Dependencies */ = {
+		OBJ_48 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -212,7 +230,7 @@
 			path = "";
 			sourceTree = "<group>";
 		};
-		OBJ_43 /* Products */ = {
+		OBJ_49 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				swiftanalyticskit::Analytics::Product /* Analytics.framework */,
@@ -229,9 +247,9 @@
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Configs */,
 				OBJ_9 /* Sources */,
-				OBJ_32 /* Tests */,
-				OBJ_42 /* Dependencies */,
-				OBJ_43 /* Products */,
+				OBJ_36 /* Tests */,
+				OBJ_48 /* Dependencies */,
+				OBJ_49 /* Products */,
 			);
 			path = "";
 			sourceTree = "<group>";
@@ -249,7 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_10 /* Analytics */,
-				OBJ_28 /* AnalyticsMock */,
+				OBJ_32 /* AnalyticsMock */,
 			);
 			name = Sources;
 			path = "";
@@ -260,10 +278,10 @@
 /* Begin PBXNativeTarget section */
 		swiftanalyticskit::Analytics /* Analytics */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_48 /* Build configuration list for PBXNativeTarget "Analytics" */;
+			buildConfigurationList = OBJ_54 /* Build configuration list for PBXNativeTarget "Analytics" */;
 			buildPhases = (
-				OBJ_51 /* Sources */,
-				OBJ_65 /* Frameworks */,
+				OBJ_57 /* Sources */,
+				OBJ_75 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,15 +294,15 @@
 		};
 		swiftanalyticskit::AnalyticsMock /* AnalyticsMock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_67 /* Build configuration list for PBXNativeTarget "AnalyticsMock" */;
+			buildConfigurationList = OBJ_77 /* Build configuration list for PBXNativeTarget "AnalyticsMock" */;
 			buildPhases = (
-				OBJ_70 /* Sources */,
-				OBJ_74 /* Frameworks */,
+				OBJ_80 /* Sources */,
+				OBJ_84 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_76 /* PBXTargetDependency */,
+				OBJ_86 /* PBXTargetDependency */,
 			);
 			name = AnalyticsMock;
 			productName = AnalyticsMock;
@@ -293,16 +311,16 @@
 		};
 		swiftanalyticskit::AnalyticsTests /* AnalyticsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_78 /* Build configuration list for PBXNativeTarget "AnalyticsTests" */;
+			buildConfigurationList = OBJ_88 /* Build configuration list for PBXNativeTarget "AnalyticsTests" */;
 			buildPhases = (
-				OBJ_81 /* Sources */,
-				OBJ_90 /* Frameworks */,
+				OBJ_91 /* Sources */,
+				OBJ_102 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_93 /* PBXTargetDependency */,
-				OBJ_94 /* PBXTargetDependency */,
+				OBJ_105 /* PBXTargetDependency */,
+				OBJ_106 /* PBXTargetDependency */,
 			);
 			name = AnalyticsTests;
 			productName = AnalyticsTests;
@@ -311,9 +329,9 @@
 		};
 		swiftanalyticskit::SwiftPMPackageDescription /* SwiftAnalyticsKitPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_96 /* Build configuration list for PBXNativeTarget "SwiftAnalyticsKitPackageDescription" */;
+			buildConfigurationList = OBJ_108 /* Build configuration list for PBXNativeTarget "SwiftAnalyticsKitPackageDescription" */;
 			buildPhases = (
-				OBJ_99 /* Sources */,
+				OBJ_111 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -340,7 +358,7 @@
 				en,
 			);
 			mainGroup = OBJ_5;
-			productRefGroup = OBJ_43 /* Products */;
+			productRefGroup = OBJ_49 /* Products */;
 			projectDirPath = .;
 			targets = (
 				swiftanalyticskit::Analytics /* Analytics */,
@@ -353,51 +371,57 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		OBJ_51 /* Sources */ = {
+		OBJ_111 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				OBJ_52 /* AnalyticsEvent.swift in Sources */,
-				OBJ_53 /* AnyAnalyticsEvent.swift in Sources */,
-				OBJ_54 /* AnyMetadata.swift in Sources */,
-				OBJ_55 /* EmptyMetadata.swift in Sources */,
-				OBJ_56 /* GlobalAnalyticsMetadata.swift in Sources */,
-				OBJ_57 /* Initializable.swift in Sources */,
-				OBJ_58 /* AnalyticsConfiguration.swift in Sources */,
-				OBJ_59 /* AnalyticsGroup.swift in Sources */,
-				OBJ_60 /* RawAnalyticsEvent.swift in Sources */,
-				OBJ_61 /* SomeAnalyticsEvent.swift in Sources */,
-				OBJ_62 /* AnalyticsEncoder.swift in Sources */,
-				OBJ_63 /* AnalyticsHandler.swift in Sources */,
-				OBJ_64 /* MultiplexAnalyticsHandler.swift in Sources */,
-				58FB1A62D1EBA9DFF0AAD764 /* Analytics.docc in Sources */,
+				OBJ_112 /* Package.swift in Sources */,
 			);
 		};
-		OBJ_70 /* Sources */ = {
+		OBJ_57 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				OBJ_71 /* AnalyticsExpectationHandler.swift in Sources */,
-				OBJ_72 /* AnalyticsOrderedExpectationHandler.swift in Sources */,
-				OBJ_73 /* StandardDictionaryEncoder.swift in Sources */,
-				38FEC7DFEA8B0179D7E4B2DC /* AnalyticsMock.docc in Sources */,
+				OBJ_58 /* AnalyticsEvent.swift in Sources */,
+				OBJ_59 /* AnyAnalyticsEvent.swift in Sources */,
+				OBJ_60 /* AnalyticsMetadata.swift in Sources */,
+				OBJ_61 /* AnyMetadata.swift in Sources */,
+				OBJ_62 /* EmptyMetadata.swift in Sources */,
+				OBJ_63 /* GlobalAnalyticsMetadata.swift in Sources */,
+				OBJ_64 /* Initializable.swift in Sources */,
+				OBJ_65 /* AnalyticsConfiguration.swift in Sources */,
+				OBJ_66 /* AnalyticsGroup.swift in Sources */,
+				OBJ_67 /* RawAnalyticsEvent.swift in Sources */,
+				OBJ_68 /* SomeAnalyticsEvent.swift in Sources */,
+				OBJ_69 /* AnalyticsEncoder.swift in Sources */,
+				OBJ_70 /* AnalyticsHandler.swift in Sources */,
+				OBJ_71 /* AnyAnalyticsHandler.swift in Sources */,
+				OBJ_72 /* AnyHashableAnalyticsHandler.swift in Sources */,
+				OBJ_73 /* MultiplexAnalyticsHandler.swift in Sources */,
+				OBJ_74 /* MultiplexAnyAnalyticsHandler.swift in Sources */,
+				48EC477F2F86FA0D80A797C1 /* Analytics.docc in Sources */,
 			);
 		};
-		OBJ_81 /* Sources */ = {
+		OBJ_80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				OBJ_82 /* AnalyticsEventTests.swift in Sources */,
-				OBJ_83 /* AnalyticsExpectationHandlerTests.swift in Sources */,
-				OBJ_84 /* AnalyticsOrderedExpectationHandlerTests.swift in Sources */,
-				OBJ_85 /* AnyAnalyticsEventTests.swift in Sources */,
-				OBJ_86 /* MultiplexAnalyticsHandlerTests.swift in Sources */,
-				OBJ_87 /* SomeAnalyticsEventTests.swift in Sources */,
-				OBJ_88 /* StandardDictionaryEncoderTests.swift in Sources */,
-				OBJ_89 /* StandardEvents.swift in Sources */,
+				OBJ_81 /* AnalyticsExpectationHandler.swift in Sources */,
+				OBJ_82 /* AnalyticsOrderedExpectationHandler.swift in Sources */,
+				OBJ_83 /* StandardDictionaryEncoder.swift in Sources */,
+				FBDEBEAE08CCED057A6A5CD9 /* AnalyticsMock.docc in Sources */,
 			);
 		};
-		OBJ_99 /* Sources */ = {
+		OBJ_91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				OBJ_100 /* Package.swift in Sources */,
+				OBJ_92 /* AnalyticsEventTests.swift in Sources */,
+				OBJ_93 /* AnalyticsExpectationHandlerTests.swift in Sources */,
+				OBJ_94 /* AnalyticsOrderedExpectationHandlerTests.swift in Sources */,
+				OBJ_95 /* AnyAnalyticsEventTests.swift in Sources */,
+				OBJ_96 /* AnyAnalyticsHandlerTests.swift in Sources */,
+				OBJ_97 /* MultiplexAnalyticsHandlerTests.swift in Sources */,
+				OBJ_98 /* MultiplexAnyAnalyticsHandlerTests.swift in Sources */,
+				OBJ_99 /* SomeAnalyticsEventTests.swift in Sources */,
+				OBJ_100 /* StandardDictionaryEncoderTests.swift in Sources */,
+				OBJ_101 /* StandardEvents.swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */
@@ -405,30 +429,48 @@
 /* Begin PBXTargetDependency section */
 		OBJ_105 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = swiftanalyticskit::AnalyticsTests /* AnalyticsTests */;
+			target = swiftanalyticskit::AnalyticsMock /* AnalyticsMock */;
 		};
-		OBJ_76 /* PBXTargetDependency */ = {
+		OBJ_106 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = swiftanalyticskit::Analytics /* Analytics */;
 		};
-		OBJ_93 /* PBXTargetDependency */ = {
+		OBJ_117 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = swiftanalyticskit::AnalyticsMock /* AnalyticsMock */;
+			target = swiftanalyticskit::AnalyticsTests /* AnalyticsTests */;
 		};
-		OBJ_94 /* PBXTargetDependency */ = {
+		OBJ_86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = swiftanalyticskit::Analytics /* Analytics */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		OBJ_103 /* Debug */ = {
+		OBJ_109 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/ManifestAPI -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -package-description-version 5.6.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		OBJ_110 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/ManifestAPI -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -package-description-version 5.6.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		OBJ_115 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		OBJ_104 /* Release */ = {
+		OBJ_116 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
@@ -487,7 +529,7 @@
 			};
 			name = Release;
 		};
-		OBJ_49 /* Debug */ = {
+		OBJ_55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* SwiftAnalyticsKit.xcconfig */;
 			buildSettings = {
@@ -518,7 +560,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_50 /* Release */ = {
+		OBJ_56 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* SwiftAnalyticsKit.xcconfig */;
 			buildSettings = {
@@ -549,7 +591,7 @@
 			};
 			name = Release;
 		};
-		OBJ_68 /* Debug */ = {
+		OBJ_78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* SwiftAnalyticsKit.xcconfig */;
 			buildSettings = {
@@ -584,7 +626,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_69 /* Release */ = {
+		OBJ_79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* SwiftAnalyticsKit.xcconfig */;
 			buildSettings = {
@@ -619,7 +661,7 @@
 			};
 			name = Release;
 		};
-		OBJ_79 /* Debug */ = {
+		OBJ_89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* SwiftAnalyticsKit.xcconfig */;
 			buildSettings = {
@@ -647,7 +689,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_80 /* Release */ = {
+		OBJ_90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* SwiftAnalyticsKit.xcconfig */;
 			buildSettings = {
@@ -672,35 +714,26 @@
 				TARGET_NAME = AnalyticsTests;
 				TVOS_DEPLOYMENT_TARGET = 14.0;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Release;
-		};
-		OBJ_97 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/ManifestAPI -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -package-description-version 5.6.0";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		OBJ_98 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/ManifestAPI -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -package-description-version 5.6.0";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		OBJ_102 /* Build configuration list for PBXAggregateTarget "SwiftAnalyticsKitPackageTests" */ = {
+		OBJ_108 /* Build configuration list for PBXNativeTarget "SwiftAnalyticsKitPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_103 /* Debug */,
-				OBJ_104 /* Release */,
+				OBJ_109 /* Debug */,
+				OBJ_110 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_114 /* Build configuration list for PBXAggregateTarget "SwiftAnalyticsKitPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_115 /* Debug */,
+				OBJ_116 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -714,38 +747,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_48 /* Build configuration list for PBXNativeTarget "Analytics" */ = {
+		OBJ_54 /* Build configuration list for PBXNativeTarget "Analytics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_49 /* Debug */,
-				OBJ_50 /* Release */,
+				OBJ_55 /* Debug */,
+				OBJ_56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_67 /* Build configuration list for PBXNativeTarget "AnalyticsMock" */ = {
+		OBJ_77 /* Build configuration list for PBXNativeTarget "AnalyticsMock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_68 /* Debug */,
-				OBJ_69 /* Release */,
+				OBJ_78 /* Debug */,
+				OBJ_79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_78 /* Build configuration list for PBXNativeTarget "AnalyticsTests" */ = {
+		OBJ_88 /* Build configuration list for PBXNativeTarget "AnalyticsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_79 /* Debug */,
-				OBJ_80 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_96 /* Build configuration list for PBXNativeTarget "SwiftAnalyticsKitPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_97 /* Debug */,
-				OBJ_98 /* Release */,
+				OBJ_89 /* Debug */,
+				OBJ_90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

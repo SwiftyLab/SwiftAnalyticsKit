@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.documentation_url = "https://swiftylab.github.io/SwiftAnalyticsKit/#{s.version}/documentation/analytics/"
   s.default_subspec   = 'Core'
-  
+
   s.subspec 'Core' do |cs|
     cs.vendored_frameworks = "Analytics.xcframework"
   end

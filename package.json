@@ -28,6 +28,6 @@
     "format": "npm exec --package=swiftylab-ci -- format.js",
     "preview-doc": "npm exec --package=swiftylab-ci -- preview-doc.js",
     "build-doc": "npm exec --package=swiftylab-ci -- build-doc.js Analytics AnalyticsMock",
-    "serve-doc": "npm exec --package=swiftylab-ci -- serve-doc.js Analytics"
+    "serve-doc": "npm exec --package=swiftylab-ci -- serve-doc.js Analytics AnalyticsMock"
   }
 }

@@ -1,7 +1,7 @@
 /// A metadata type without any data.
 ///
 /// Use this type for events where metadata is not tracked.
-public struct EmptyMetadata: Initializable, Encodable {
+public struct EmptyMetadata: Initializable, AnalyticsMetadata {
     /// A dummy empty dictionary that is encoded.
     private let data: [String: Bool] = [:]
     /// Creates a new instance.

@@ -46,3 +46,15 @@ struct UserIdData: GlobalAnalyticsMetadata {
 
     var event: SomeStringAnalyticsEvent<Self> { .some(group: .sensitive) }
 }
+
+struct AnyEncodable: AnalyticsMetadata {
+    let value: Encodable
+
+    init(with value: Encodable) {
+        self.value = value
+    }
+
+    func encode(to encoder: Encoder) throws {
+        try value.encode(to: encoder)
+    }
+}

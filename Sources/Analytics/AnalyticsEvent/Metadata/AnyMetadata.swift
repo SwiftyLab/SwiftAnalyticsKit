@@ -3,15 +3,15 @@
 ///
 /// This type is used with ``AnyAnalyticsEvent``
 /// to allow sending any type of metadata with an event.
-public struct AnyMetadata: Encodable {
+public struct AnyMetadata: AnalyticsMetadata {
     /// The actual value that is encoded.
-    internal let value: Encodable
+    internal let value: AnalyticsMetadata
 
     /// Creates a new metadata with the provided value.
     ///
     /// - Parameter value: The actual value
     ///                    that will be encoded.
-    public init(with value: Encodable) {
+    public init(with value: AnalyticsMetadata) {
         self.value = value
     }
 

@@ -3,7 +3,10 @@
 /// This type provides the safety guarantee of associating events with a specific type metadata while also
 /// erasing the actual event type. This can be used for metadata of type ``GlobalAnalyticsMetadata``
 /// where it does not make sense to create a new event type for the metadata.
-public struct SomeAnalyticsEvent<Name, Metadata: Encodable>: RawAnalyticsEvent {
+public struct SomeAnalyticsEvent<
+    Name,
+    Metadata: AnalyticsMetadata
+>: RawAnalyticsEvent {
     /// The name of the event.
     public let name: Name
     /// The group or set of groups event is part of.
@@ -50,5 +53,5 @@ where Name: ExpressibleByStringLiteral {}
 
 /// A type-erased ``AnalyticsEvent`` with `String` event name
 /// that only keeps metadata type information.
-public typealias SomeStringAnalyticsEvent<Metadata: Encodable> =
+public typealias SomeStringAnalyticsEvent<Metadata: AnalyticsMetadata> =
     SomeAnalyticsEvent<String, Metadata>

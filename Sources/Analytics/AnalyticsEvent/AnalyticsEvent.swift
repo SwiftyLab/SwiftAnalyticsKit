@@ -22,7 +22,7 @@ public protocol AnalyticsEvent<Name,Metadata> {
     ///
     /// It is the responsibility of ``AnalyticsHandler``
     /// to serialize metadata to the actual type that will be stored.
-    associatedtype Metadata: Encodable
+    associatedtype Metadata: AnalyticsMetadata
     /// The name of the event.
     var name: Name { get }
     /// The group or set of groups event is part of.
@@ -74,7 +74,7 @@ public protocol AnalyticsEvent {
     ///
     /// It is the responsibility of ``AnalyticsHandler``
     /// to serialize metadata to the actual type that will be stored.
-    associatedtype Metadata: Encodable
+    associatedtype Metadata: AnalyticsMetadata
     /// The name of the event.
     var name: Name { get }
     /// The group or set of groups event is part of.

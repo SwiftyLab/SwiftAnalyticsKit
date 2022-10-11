@@ -15,7 +15,7 @@ enum LoginEvent: String, AnalyticsEvent {
     case loginSucceeded
     case loginFailed
 
-    struct Metadata: Encodable {
+    struct Metadata: AnalyticsMetadata {
         let user: String
     }
 }
@@ -46,6 +46,7 @@ LoginEvents.loginAttempted.fire(on: handler, data: .init(user: "user"))
 
 ### Metadata
 
+- ``AnalyticsMetadata``
 - ``GlobalAnalyticsMetadata``
 - ``EmptyMetadata``
 - ``AnyMetadata``
@@ -58,4 +59,7 @@ LoginEvents.loginAttempted.fire(on: handler, data: .init(user: "user"))
 ### Handler
 
 - ``AnalyticsHandler``
+- ``AnyAnalyticsHandler``
 - ``MultiplexAnalyticsHandler``
+- ``AnyHashableAnalyticsHandler``
+- ``MultiplexAnyAnalyticsHandler``
