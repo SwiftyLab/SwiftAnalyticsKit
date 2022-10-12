@@ -1,79 +1,20 @@
+import Analytics
 import XCTest
 
-import Analytics
-
-/// An `AnalyticsHandler` that tracks expected events by their name.
-///
-/// Use this type to check if analytics events with specified name have been fired as part of the test.
-/// Use the `XCTestCase` extension methods to register expectation of an analytics event
-/// with optional callback for validation. The expectation is fulfilled multiple times and callback
-/// is invoked multiple times depending on whether associated event is fired multiple times.
-///
-/// If the registered event names aren't tracked by this handler, then test is failed with unfulfilled expectations.
-/// If the expected event and metadata type don't match or any assertions failed in provided callback,
-/// then also test is failed.
-///
-/// - Important: Only one expectation can be registered per event name.
-public final class AnalyticsExpectationHandler<
-    EventName: Hashable
->: AnalyticsHandler, Initializable, Hashable {
-    /// All the event expectations registered.
-    private var handlers: [EventName: Expectation] = [:]
+public protocol AnalyticsExpectationHandler: AnalyticsHandler, Initializable {
     /// A type representing an expectation with the expectation location
     /// and optional validation callback.
-    fileprivate typealias Expectation = (
-        (XCTestExpectation, StaticString, StaticString, UInt),
+    typealias Expectation = (
+        (AnalyticsExpectation, StaticString, StaticString, UInt),
         ((Any, AnalyticsMetadata) throws -> Void)?
     )
-
-    /// Creates a new instance of handler.
-    public init() {}
-
-    /// Fulfills the registered event's expectation and invokes callback.
-    ///
-    /// If event's event name is registered, then the associated expectation is fulfilled
-    /// and the associated callback is invoked with provided parameters,
-    /// otherwise the event is ignored.
+    /// Store expectation to be fulfilled later when analytics event
+    /// associated with it is fired on this handler.
     ///
     /// - Parameters:
-    ///   - event: The event to track.
-    ///   - time: The time at which event fired.
-    ///   - data: The associated metadata with event.
-    public func track<Event: AnalyticsEvent>(
-        event: Event,
-        at time: Date,
-        data: Event.Metadata
-    ) where Event.Name == EventName {
-        guard let ((expectation, file, _, line), handler) = handlers[event.name]
-        else { return }
-        expectation.fulfill()
-        XCTAssertNoThrow(try handler?(event, data), file: file, line: line)
-    }
-
-    /// Returns a Boolean value indicating whether
-    /// two instances are the same.
-    ///
-    /// - Parameters:
-    ///   - lhs: An `AnalyticsExpectationHandler` instance.
-    ///   - rhs: Another `AnalyticsExpectationHandler` instance.
-    ///
-    /// - Returns: Whether two instances are the same.
-    public static func == (
-        lhs: AnalyticsExpectationHandler,
-        rhs: AnalyticsExpectationHandler
-    ) -> Bool {
-        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
-    }
-
-    /// Hashes the current instance by feeding an unique identifier
-    /// associated into the given hasher.
-    ///
-    /// - Parameter hasher: The hasher to use when combining
-    ///                     the components of this instance.
-    public func hash(into hasher: inout Hasher) {
-        ObjectIdentifier(self).hash(into: &hasher)
-    }
-
+    ///   - expectation: The expectation to store.
+    ///   - event: The event name to associate with.
+    func add(expectation: Expectation, withEventName event: EventName)
     /// Registers expectation and callback for provided event name.
     ///
     /// - Parameters:
@@ -83,15 +24,53 @@ public final class AnalyticsExpectationHandler<
     ///   - file: The file where the registration request occurs.
     ///   - function: The function where the registration request occurs.
     ///   - line: The line where the registration request occurs.
-    fileprivate func register<Event: AnalyticsEvent>(
+    func register<Event: AnalyticsEvent>(
         event: Event.Name,
-        expectation: XCTestExpectation,
+        expectation: AnalyticsExpectation,
+        evaluate: @escaping (Event, Event.Metadata) throws -> Void,
+        file: StaticString,
+        function: StaticString,
+        line: UInt
+    ) where Event.Name == EventName
+    /// Registers expectation for provided event name.
+    ///
+    /// - Parameters:
+    ///   - event: The event name to register for.
+    ///   - expectation: The test expectation to register.
+    ///   - file: The file where the registration request occurs.
+    ///   - function: The function where the registration request occurs.
+    ///   - line: The line where the registration request occurs.
+    func register(
+        event: EventName,
+        expectation: AnalyticsExpectation,
+        file: StaticString,
+        function: StaticString,
+        line: UInt
+    )
+}
+
+public extension AnalyticsExpectationHandler {
+    /// Registers expectation and callback for provided event name.
+    ///
+    /// Invokes ``add(expectation:withEventName:)``
+    /// to store the expectation to be fulfilled later.
+    ///
+    /// - Parameters:
+    ///   - event: The event name to register for.
+    ///   - expectation: The test expectation to register.
+    ///   - evaluate: The callback to invoke when event fires.
+    ///   - file: The file where the registration request occurs.
+    ///   - function: The function where the registration request occurs.
+    ///   - line: The line where the registration request occurs.
+    func register<Event: AnalyticsEvent>(
+        event: Event.Name,
+        expectation: AnalyticsExpectation,
         evaluate: @escaping (Event, Event.Metadata) throws -> Void,
         file: StaticString,
         function: StaticString,
         line: UInt
     ) where Event.Name == EventName {
-        handlers[event] = (
+        let exp: Expectation = (
             (expectation, file, function, line),
             { event, data in
                 let event = try XCTUnwrap(
@@ -106,9 +85,12 @@ public final class AnalyticsExpectationHandler<
                 try evaluate(event, data)
             }
         )
+        add(expectation: exp, withEventName: event)
     }
-
     /// Registers expectation for provided event name.
+    ///
+    /// Invokes ``add(expectation:withEventName:)``
+    /// to store the expectation to be fulfilled later.
     ///
     /// - Parameters:
     ///   - event: The event name to register for.
@@ -116,14 +98,38 @@ public final class AnalyticsExpectationHandler<
     ///   - file: The file where the registration request occurs.
     ///   - function: The function where the registration request occurs.
     ///   - line: The line where the registration request occurs.
-    fileprivate func register(
+    func register(
         event: EventName,
-        expectation: XCTestExpectation,
+        expectation: AnalyticsExpectation,
         file: StaticString,
         function: StaticString,
         line: UInt
     ) {
-        handlers[event] = ((expectation, file, function, line), nil)
+        let exp: Expectation = ((expectation, file, function, line), nil)
+        add(expectation: exp, withEventName: event)
+    }
+}
+
+public extension AnalyticsExpectationHandler
+where Self: Hashable, Self: AnyObject {
+    /// Returns a Boolean value indicating whether
+    /// two instances are the same.
+    ///
+    /// - Parameters:
+    ///   - lhs: An `AnalyticsOrderedExpectationHandler` instance.
+    ///   - rhs: Another `AnalyticsOrderedExpectationHandler` instance.
+    ///
+    /// - Returns: Whether two instances are the same.
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+    /// Hashes the current instance by feeding an unique identifier
+    /// associated into the given hasher.
+    ///
+    /// - Parameter hasher: The hasher to use when combining
+    ///                     the components of this instance.
+    func hash(into hasher: inout Hasher) {
+        ObjectIdentifier(self).hash(into: &hasher)
     }
 }
 
@@ -132,7 +138,7 @@ public extension XCTestCase {
     ///
     /// Use this method to create `XCTestExpectation` instances that is fulfilled when event
     /// with provided name is fired on the provided ``AnalyticsExpectationHandler``
-    /// and the provided callback is also invoked with passed parameters.
+    /// type and the provided callback is also invoked with passed parameters.
     ///
     /// - Parameters:
     ///   - event: The name of the event to expect.
@@ -152,17 +158,19 @@ public extension XCTestCase {
     ///   - evaluate: The callback invoked when expectation is fulfilled.
     ///
     /// - Returns: The created test expectation.
-    /// - Important: Only one expectation can be registered per event name.
     @discardableResult
-    func expect<Event: AnalyticsEvent>(
+    func expect<Event: AnalyticsEvent, Handler: AnalyticsExpectationHandler>(
         event: Event.Name,
-        on handler: AnalyticsExpectationHandler<Event.Name>,
+        on handler: Handler,
         file: StaticString = #file,
         function: StaticString = #function,
         line: UInt = #line,
         evaluate: @escaping (Event, Event.Metadata) throws -> Void
-    ) -> XCTestExpectation {
-        let expectation = self.expectation(description: "\(event)")
+    ) -> AnalyticsExpectation where Handler.EventName == Event.Name {
+        let expectation = AnalyticsExpectation(
+            from: self.expectation(description: "\(event)")
+        )
+        expectation.assertForOverFulfill = false
         handler.register(
             event: event,
             expectation: expectation,
@@ -173,11 +181,11 @@ public extension XCTestCase {
         )
         return expectation
     }
-
     /// Creates a new expectation for the provided event name on the provided handler.
     ///
     /// Use this method to create `XCTestExpectation` instances that is fulfilled when event
-    /// with provided name is fired on the provided ``AnalyticsExpectationHandler``.
+    /// with provided name is fired on the provided ``AnalyticsExpectationHandler``
+    /// type and the provided callback is also invoked with passed parameters.
     ///
     /// - Parameters:
     ///   - event: The name of the event to expect.
@@ -196,16 +204,18 @@ public extension XCTestCase {
     ///           parameter when calling this method.
     ///
     /// - Returns: The created test expectation.
-    /// - Important: Only one expectation can be registered per event name.
     @discardableResult
-    func expect<EventName: Hashable>(
+    func expect<EventName: Hashable, Handler: AnalyticsExpectationHandler>(
         event: EventName,
-        on handler: AnalyticsExpectationHandler<EventName>,
+        on handler: Handler,
         file: StaticString = #file,
         function: StaticString = #function,
         line: UInt = #line
-    ) -> XCTestExpectation {
-        let expectation = self.expectation(description: "\(event)")
+    ) -> AnalyticsExpectation where Handler.EventName == EventName {
+        let expectation = AnalyticsExpectation(
+            from: self.expectation(description: "\(event)")
+        )
+        expectation.assertForOverFulfill = false
         handler.register(
             event: event,
             expectation: expectation,

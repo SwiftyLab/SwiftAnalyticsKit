@@ -62,7 +62,7 @@ final class AnyAnalyticsEventTests: XCTestCase {
         let data = LoginFailureReason(reason: "failed")
         let event = AnyAnalyticsEvent(from: data.event)
         print(event.name)
-        let handler = AnalyticsExpectationHandler<String>()
+        let handler = AnalyticsSingleExpectationHandler<String>()
         expect(event: "loginFailed", on: handler) {
             (event: AnyAnalyticsEvent<String>, data: AnyMetadata) in
             let data = try XCTUnwrap(data.value as? LoginFailureReason)

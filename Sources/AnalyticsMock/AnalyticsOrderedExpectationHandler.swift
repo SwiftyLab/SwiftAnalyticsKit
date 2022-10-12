@@ -1,6 +1,5 @@
-import XCTest
-
 import Analytics
+import XCTest
 
 /// An `AnalyticsHandler` that tracks expected events by their name and order.
 ///
@@ -17,18 +16,28 @@ import Analytics
 /// then also test is failed.
 public final class AnalyticsOrderedExpectationHandler<
     EventName: Hashable
->: AnalyticsHandler, Initializable, Hashable {
+>: AnalyticsExpectationHandler, Hashable {
     /// All the event expectations registered.
     private var handlers: [EventName: [Expectation]] = [:]
-    /// A type representing an expectation with the expectation location
-    /// and optional validation callback.
-    fileprivate typealias Expectation = (
-        (XCTestExpectation, StaticString, StaticString, UInt),
-        ((Any, AnalyticsMetadata) throws -> Void)?
-    )
 
     /// Creates a new instance of handler.
     public init() {}
+
+    /// Store expectation to be fulfilled later when analytics event
+    /// associated with it is fired on this handler.
+    ///
+    /// Expectations are fulfilled in the order of their registration.
+    ///
+    /// - Parameters:
+    ///   - expectation: The expectation to store.
+    ///   - event: The event name to associate with.
+    public func add(expectation: Expectation, withEventName event: EventName) {
+        if handlers[event] != nil {
+            handlers[event]!.append(expectation)
+        } else {
+            handlers[event] = [expectation]
+        }
+    }
 
     /// Fulfills the registered event's oldest expectation and invokes callback.
     ///
@@ -45,179 +54,18 @@ public final class AnalyticsOrderedExpectationHandler<
         at time: Date,
         data: Event.Metadata
     ) where Event.Name == EventName {
-        guard !(handlers[event.name]?.isEmpty ?? true) else { return }
-        let ((expectation, file, _, line), handler) = handlers[event.name]!
-            .removeFirst()
+        guard
+            let (
+                (expectation, file, _, line), handler
+            ) = handlers[event.name]?.first
+        else { return }
         XCTAssertNoThrow(try handler?(event, data), file: file, line: line)
         expectation.fulfill()
-    }
-
-    /// Returns a Boolean value indicating whether
-    /// two instances are the same.
-    ///
-    /// - Parameters:
-    ///   - lhs: An `AnalyticsOrderedExpectationHandler` instance.
-    ///   - rhs: Another `AnalyticsOrderedExpectationHandler` instance.
-    ///
-    /// - Returns: Whether two instances are the same.
-    public static func == (
-        lhs: AnalyticsOrderedExpectationHandler,
-        rhs: AnalyticsOrderedExpectationHandler
-    ) -> Bool {
-        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
-    }
-
-    /// Hashes the current instance by feeding an unique identifier
-    /// associated into the given hasher.
-    ///
-    /// - Parameter hasher: The hasher to use when combining
-    ///                     the components of this instance.
-    public func hash(into hasher: inout Hasher) {
-        ObjectIdentifier(self).hash(into: &hasher)
-    }
-
-    /// Registers expectation and callback for provided event name.
-    ///
-    /// - Parameters:
-    ///   - event: The event name to register for.
-    ///   - expectation: The test expectation to register.
-    ///   - evaluate: The callback to invoke when event fires.
-    ///   - file: The file where the registration request occurs.
-    ///   - function: The function where the registration request occurs.
-    ///   - line: The line where the registration request occurs.
-    fileprivate func register<Event: AnalyticsEvent>(
-        event: Event.Name,
-        expectation: XCTestExpectation,
-        evaluate: @escaping (Event, Event.Metadata) throws -> Void,
-        file: StaticString,
-        function: StaticString,
-        line: UInt
-    ) where Event.Name == EventName {
-        let newHandling: Expectation = (
-            (expectation, file, function, line),
-            { event, data in
-                let event = try XCTUnwrap(
-                    event as? Event,
-                    "Expected event type \(Event.self) but received \(type(of: event))",
-                    file: file, line: line
-                )
-                let data = try XCTUnwrap(
-                    data as? Event.Metadata,
-                    file: file, line: line
-                )
-                try evaluate(event, data)
-            }
-        )
-        if handlers[event] != nil {
-            handlers[event]!.append(newHandling)
-        } else {
-            handlers[event] = [newHandling]
+        switch expectation.state {
+        case .fulfilled where !expectation.assertForOverFulfill: break
+        case .overfulfilled: break
+        default: return
         }
-    }
-
-    /// Registers expectation for provided event name.
-    ///
-    /// - Parameters:
-    ///   - event: The event name to register for.
-    ///   - expectation: The test expectation to register.
-    ///   - file: The file where the registration request occurs.
-    ///   - function: The function where the registration request occurs.
-    ///   - line: The line where the registration request occurs.
-    fileprivate func register(
-        event: EventName,
-        expectation: XCTestExpectation,
-        file: StaticString,
-        function: StaticString,
-        line: UInt
-    ) {
-        let newHandling: Expectation = (
-            (expectation, file, function, line), nil
-        )
-        if handlers[event] != nil {
-            handlers[event]!.append(newHandling)
-        } else {
-            handlers[event] = [newHandling]
-        }
-    }
-}
-
-public extension XCTestCase {
-    /// Creates a new expectation for the provided event name on the provided handler.
-    ///
-    /// Use this method to create `XCTestExpectation` instances that is fulfilled when event
-    /// with provided name is fired on the provided ``AnalyticsOrderedExpectationHandler``
-    /// and the provided callback is also invoked with passed parameters.
-    ///
-    /// - Parameters:
-    ///   - event: The name of the event to expect.
-    ///   - handler: The handler on which expectation registered.
-    ///   - file: The file name to use in the error message if
-    ///           this expectation is not waited for. Default is the file
-    ///           containing the call to this method. It is rare to provide this
-    ///           parameter when calling this method.
-    ///   - function: The function name to use in the error message if
-    ///               this expectation is not waited for. Default is the file
-    ///               containing the call to this method. It is rare to provide this
-    ///               parameter when calling this method.
-    ///   - line: The line name to use in the error message if
-    ///           this expectation is not waited for. Default is the file
-    ///           containing the call to this method. It is rare to provide this
-    ///           parameter when calling this method.
-    ///   - evaluate: The callback invoked when expectation is fulfilled.
-    func expect<Event: AnalyticsEvent>(
-        event: Event.Name,
-        on handler: AnalyticsOrderedExpectationHandler<Event.Name>,
-        file: StaticString = #file,
-        function: StaticString = #function,
-        line: UInt = #line,
-        evaluate: @escaping (Event, Event.Metadata) throws -> Void
-    ) {
-        let expectation = self.expectation(description: "\(event)")
-        handler.register(
-            event: event,
-            expectation: expectation,
-            evaluate: evaluate,
-            file: file,
-            function: function,
-            line: line
-        )
-    }
-
-    /// Creates a new expectation for the provided event name on the provided handler.
-    ///
-    /// Use this method to create `XCTestExpectation` instances that is fulfilled when event
-    /// with provided name is fired on the provided ``AnalyticsOrderedExpectationHandler``
-    /// and the provided callback is also invoked with passed parameters.
-    ///
-    /// - Parameters:
-    ///   - event: The name of the event to expect.
-    ///   - handler: The handler on which expectation registered.
-    ///   - file: The file name to use in the error message if
-    ///           this expectation is not waited for. Default is the file
-    ///           containing the call to this method. It is rare to provide this
-    ///           parameter when calling this method.
-    ///   - function: The function name to use in the error message if
-    ///               this expectation is not waited for. Default is the file
-    ///               containing the call to this method. It is rare to provide this
-    ///               parameter when calling this method.
-    ///   - line: The line name to use in the error message if
-    ///           this expectation is not waited for. Default is the file
-    ///           containing the call to this method. It is rare to provide this
-    ///           parameter when calling this method.
-    func expect<EventName: Hashable>(
-        event: EventName,
-        on handler: AnalyticsOrderedExpectationHandler<EventName>,
-        file: StaticString = #file,
-        function: StaticString = #function,
-        line: UInt = #line
-    ) {
-        let expectation = self.expectation(description: "\(event)")
-        handler.register(
-            event: event,
-            expectation: expectation,
-            file: file,
-            function: function,
-            line: line
-        )
+        handlers[event.name]!.removeFirst()
     }
 }

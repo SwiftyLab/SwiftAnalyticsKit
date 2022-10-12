@@ -6,9 +6,9 @@ import XCTest
 final class MultiplexAnyAnalyticsHandlerTests: XCTestCase {
 
     func testMultiplexHandler() throws {
-        let actionHandler = AnalyticsExpectationHandler<String>()
+        let actionHandler = AnalyticsSingleExpectationHandler<String>()
         let actionHandler2 = AnalyticsOrderedExpectationHandler<String>()
-        let stateHandler = AnalyticsExpectationHandler<String>()
+        let stateHandler = AnalyticsSingleExpectationHandler<String>()
         let actionStateHandler = AnalyticsOrderedExpectationHandler<String>()
         let infoHandler = AnalyticsOrderedExpectationHandler<String>()
         let sensitiveHandler = AnalyticsOrderedExpectationHandler<String>()

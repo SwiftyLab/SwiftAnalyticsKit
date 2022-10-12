@@ -15,4 +15,5 @@ Provides expectation based analytics backends, i.e. ``AnalyticsExpectationHandle
 ### Handler
 
 - ``AnalyticsExpectationHandler``
+- ``AnalyticsSingleExpectationHandler``
 - ``AnalyticsOrderedExpectationHandler``

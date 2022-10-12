@@ -6,7 +6,7 @@ import XCTest
 final class AnalyticsEventTests: XCTestCase {
 
     func testEventFire() throws {
-        let handler = AnalyticsExpectationHandler<String>()
+        let handler = AnalyticsSingleExpectationHandler<String>()
         expect(event: "loginScreenViewed", on: handler) {
             (event: LoginEvent, data: LoginEvent.Metadata) in
             XCTAssertEqual(event.group, .state)
@@ -26,7 +26,7 @@ final class AnalyticsEventTests: XCTestCase {
     }
 
     func testEventFireWithMetadata() throws {
-        let handler = AnalyticsExpectationHandler<String>()
+        let handler = AnalyticsSingleExpectationHandler<String>()
         expect(event: "loginFailed", on: handler) {
             (event: LoginFailureReason.Event, data: LoginFailureReason) in
             XCTAssertEqual(event.group, .action)
