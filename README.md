@@ -7,7 +7,7 @@
 [![Swift](https://img.shields.io/badge/Swift-5+-orange)](https://img.shields.io/badge/Swift-5-DE5D43)
 [![Platforms](https://img.shields.io/badge/Platforms-all-sucess)](https://img.shields.io/badge/Platforms-all-sucess)
 [![CI/CD](https://github.com/SwiftyLab/SwiftAnalyticsKit/actions/workflows/main.yml/badge.svg?event=push)](https://github.com/SwiftyLab/SwiftAnalyticsKit/actions/workflows/main.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/37183c809818826c1bcf/maintainability)](https://codeclimate.com/github/SwiftyLab/SwiftAnalyticsKit/maintainability)
+[![CodeFactor](https://www.codefactor.io/repository/github/swiftylab/swiftanalyticskit/badge)](https://www.codefactor.io/repository/github/swiftylab/swiftanalyticskit)
 [![codecov](https://codecov.io/gh/SwiftyLab/SwiftAnalyticsKit/branch/main/graph/badge.svg?token=YSryFeUvVW)](https://codecov.io/gh/SwiftyLab/SwiftAnalyticsKit)
 
 **SwiftAnalyticsKit** is an API package which tries to establish a common analytics API the ecosystem can use. You can implement ``AnalyticsHandler`` to create compatible analytics backends. You can also create custom encoders with ``AnalyticsEncoder`` to serialize metadata for your backend if default encoders doesn't work for your case.
@@ -77,6 +77,13 @@ Once you have your Swift package set up, adding `SwiftAnalyticsKit` as a depende
 .package(url: "https://github.com/SwiftyLab/SwiftAnalyticsKit.git", from: "1.0.0"),
 ```
 
+and add products as dependency to your targets:
+
+```swift
+.product(name: "Analytics", package: "SwiftAnalyticsKit")
+.product(name: "AnalyticsMock", package: "SwiftAnalyticsKit") // To use mocks, i.e. in test targets
+```
+
 Optionally, you can also use the pre-built XCFramework from the GitHub releases page by replacing `{version}` and `{checksum}` with the required version and checksum of artifact you want to use:
 
 ```swift
@@ -110,9 +117,9 @@ If you prefer not to use any of the aforementioned dependency managers, you can 
 - In the tab bar at the top of that window, open the "General" panel.
 - Click on the `+` button under the `Frameworks and Libraries` section.
 - You will see `SwiftAnalyticsKit.xcodeproj` folder with `Analytics.framework` and `AnalyticsMock.framework` nested inside.
-- Select the `AnalyticsMock.framework` and that's it!
+- Select the `Analytics.framework` and that's it!
 
-  > The `AnalyticsMock.framework` is automagically added as a target dependency, linked framework and embedded framework in build phase which is all you need to build on the simulator and a device.
+  > The `Analytics.framework` is automagically added as a target dependency, linked framework and embedded framework in build phase which is all you need to build on the simulator and a device.
 
 - To use default mocks provided for test cases, select the `AnalyticsMock.framework` when adding to your test target.
 

@@ -63,8 +63,10 @@ final class AnalyticsEventTests: XCTestCase {
             XCTAssertEqual(event.group, .sensitive)
             XCTAssertEqual(data.id, "some_id")
         }
-        UserProfileData(name: "Some User", email: "some@email.com").send(
-            to: handler)
+        UserProfileData(
+            name: "Some User",
+            email: "some@email.com"
+        ).send(to: handler)
         UserIdData(id: "some_id").send(to: handler)
         waitForExpectations(timeout: 1)
     }
