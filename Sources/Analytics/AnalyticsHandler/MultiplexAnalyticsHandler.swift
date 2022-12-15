@@ -1,5 +1,5 @@
 #if swift(>=5.7)
-import struct Foundation.Date
+import Foundation
 
 /// A pseudo-``AnalyticsHandler`` that can be used to
 /// send event track requests to multiple other ``AnalyticsHandler``s.

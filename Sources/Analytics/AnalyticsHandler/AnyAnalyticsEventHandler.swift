@@ -1,4 +1,4 @@
-import struct Foundation.Date
+import Foundation
 
 /// A type representing type-erased `AnalyticsHandler`s.
 protocol AnyAnalyticsEventHandler: AnalyticsHandler {

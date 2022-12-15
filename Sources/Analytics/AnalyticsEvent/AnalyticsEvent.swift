@@ -40,7 +40,7 @@ public protocol AnalyticsEvent<Name,Metadata> {
     /// Fires event with associated metadata to the provided handler for tracking.
     ///
     /// By default, event with associated data and provided handler is passed
-    /// to ``configuration`` to apply some post processing.
+    /// to ``configuration-98oi3`` to apply some post processing.
     ///
     /// - Parameters:
     ///   - handler: The handler that will track this event.
@@ -92,7 +92,7 @@ public protocol AnalyticsEvent {
     /// Fires event with associated metadata to the provided handler for tracking.
     ///
     /// By default, event with associated data and provided handler is passed
-    /// to ``configuration`` to apply some post processing.
+    /// to ``configuration-98oi3`` to apply some post processing.
     ///
     /// - Parameters:
     ///   - handler: The handler that will track this event.

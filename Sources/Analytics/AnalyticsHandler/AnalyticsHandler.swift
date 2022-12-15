@@ -1,4 +1,4 @@
-import struct Foundation.Date
+import Foundation
 
 #if swift(>=5.7)
 /// An `AnalyticsHandler` is an implementation of an analytics backend.

@@ -1,4 +1,4 @@
-import struct Foundation.Date
+import Foundation
 
 /// The configuration of analytics event.
 ///

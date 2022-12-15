@@ -1,4 +1,4 @@
-import struct Foundation.Date
+import Foundation
 
 /// A type-erased ``AnalyticsHandler`` value.
 ///
