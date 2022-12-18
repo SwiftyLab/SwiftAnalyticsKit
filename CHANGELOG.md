@@ -24,7 +24,7 @@
 
 ### 💄 Styles
 
-* add swift package index documentation support ([9cdf9c8](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/9cdf9c85523a0efcb1e9a62281c3d7af240abc11))
+* add swift package index documentation support ([d7313ce](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/d7313cec2e6241fcc2c17d120f3fe7f0f16c4cc9))
 * add swift-format for code formatting ([3ab79a1](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/3ab79a18ed8bd40fef6ec21bac459d595824ddee))
 * add vscode workspace settings ([dc47dca](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/dc47dcadf802373fd0543f317faf5134bafc0142))
 
