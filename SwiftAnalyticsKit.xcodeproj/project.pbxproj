@@ -21,8 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		8B0DE71EDC5A982D744C371E /* Analytics.docc in Sources */ = {isa = PBXBuildFile; fileRef = 15D0EACAB3A8E6677F281D1E /* Analytics.docc */; };
-		C58BA2A0E305F74B96259801 /* AnalyticsMock.docc in Sources */ = {isa = PBXBuildFile; fileRef = C1D785EDA64E8EB58D5485F5 /* AnalyticsMock.docc */; };
+		34CC1459F61EB96A1844BAB7 /* AnalyticsMock.docc in Sources */ = {isa = PBXBuildFile; fileRef = E93E05E3FB2BDAB23567A496 /* AnalyticsMock.docc */; };
+		B39B2CDFA42CC0BEBC8D51D9 /* Analytics.docc in Sources */ = {isa = PBXBuildFile; fileRef = F6575E64964E8040F3157BF0 /* Analytics.docc */; };
 		OBJ_100 /* AnalyticsSingleExpectationHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* AnalyticsSingleExpectationHandlerTests.swift */; };
 		OBJ_101 /* AnyAnalyticsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* AnyAnalyticsEventTests.swift */; };
 		OBJ_102 /* AnyAnalyticsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* AnyAnalyticsHandlerTests.swift */; };
@@ -63,8 +63,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		15D0EACAB3A8E6677F281D1E /* Analytics.docc */ = {isa = PBXFileReference; includeInIndex = 1; path = Analytics.docc; sourceTree = "<group>"; };
-		C1D785EDA64E8EB58D5485F5 /* AnalyticsMock.docc */ = {isa = PBXFileReference; includeInIndex = 1; path = AnalyticsMock.docc; sourceTree = "<group>"; };
+		E93E05E3FB2BDAB23567A496 /* AnalyticsMock.docc */ = {isa = PBXFileReference; includeInIndex = 1; path = AnalyticsMock.docc; sourceTree = "<group>"; };
+		F6575E64964E8040F3157BF0 /* Analytics.docc */ = {isa = PBXFileReference; includeInIndex = 1; path = Analytics.docc; sourceTree = "<group>"; };
 		OBJ_12 /* AnalyticsEvent.swift */ = {isa = PBXFileReference; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
 		OBJ_13 /* AnyAnalyticsEvent.swift */ = {isa = PBXFileReference; path = AnyAnalyticsEvent.swift; sourceTree = "<group>"; };
 		OBJ_15 /* AnalyticsMetadata.swift */ = {isa = PBXFileReference; path = AnalyticsMetadata.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 			children = (
 				OBJ_11 /* AnalyticsEvent */,
 				OBJ_25 /* AnalyticsHandler */,
-				15D0EACAB3A8E6677F281D1E /* Analytics.docc */,
+				F6575E64964E8040F3157BF0 /* Analytics.docc */,
 			);
 			name = Analytics;
 			path = Sources/Analytics;
@@ -198,7 +198,7 @@
 				OBJ_36 /* AnalyticsOrderedExpectationHandler.swift */,
 				OBJ_37 /* AnalyticsSingleExpectationHandler.swift */,
 				OBJ_38 /* StandardDictionaryEncoder.swift */,
-				C1D785EDA64E8EB58D5485F5 /* AnalyticsMock.docc */,
+				E93E05E3FB2BDAB23567A496 /* AnalyticsMock.docc */,
 			);
 			name = AnalyticsMock;
 			path = Sources/AnalyticsMock;
@@ -407,7 +407,7 @@
 				OBJ_76 /* AnyHashableAnalyticsHandler.swift in Sources */,
 				OBJ_77 /* MultiplexAnalyticsHandler.swift in Sources */,
 				OBJ_78 /* MultiplexAnyAnalyticsHandler.swift in Sources */,
-				8B0DE71EDC5A982D744C371E /* Analytics.docc in Sources */,
+				B39B2CDFA42CC0BEBC8D51D9 /* Analytics.docc in Sources */,
 			);
 		};
 		OBJ_84 /* Sources */ = {
@@ -418,7 +418,7 @@
 				OBJ_87 /* AnalyticsOrderedExpectationHandler.swift in Sources */,
 				OBJ_88 /* AnalyticsSingleExpectationHandler.swift in Sources */,
 				OBJ_89 /* StandardDictionaryEncoder.swift in Sources */,
-				C58BA2A0E305F74B96259801 /* AnalyticsMock.docc in Sources */,
+				34CC1459F61EB96A1844BAB7 /* AnalyticsMock.docc in Sources */,
 			);
 		};
 		OBJ_97 /* Sources */ = {

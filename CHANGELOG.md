@@ -6,12 +6,6 @@
 * add analytics API tests ([c5afd0b](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/c5afd0b558664284286688616d1c19630b77bcf3))
 
 
-### 💄 Styles
-
-* add swift-format for code formatting ([3ab79a1](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/3ab79a18ed8bd40fef6ec21bac459d595824ddee))
-* add vscode workspace settings ([dc47dca](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/dc47dcadf802373fd0543f317faf5134bafc0142))
-
-
 ### 🚀 Features
 
 * add analytics API implementation ([4201fbb](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/4201fbb2cabba89495c1d916db65a13ca35f9f30))
@@ -26,4 +20,11 @@
 
 * add contributing and conduct guidelines ([8ea904b](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/8ea904b815ada88f6f34cce4f98c98cffa63e225))
 * **README:** update with installation and usage details ([0920e6c](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/0920e6c83a9819361e2d218d550c0d32b54eebfb))
+
+
+### 💄 Styles
+
+* add swift package index documentation support ([9cdf9c8](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/9cdf9c85523a0efcb1e9a62281c3d7af240abc11))
+* add swift-format for code formatting ([3ab79a1](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/3ab79a18ed8bd40fef6ec21bac459d595824ddee))
+* add vscode workspace settings ([dc47dca](https://github.com/SwiftyLab/SwiftAnalyticsKit/commit/dc47dcadf802373fd0543f317faf5134bafc0142))
 
