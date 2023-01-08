@@ -2,9 +2,6 @@
 
 import PackageDescription
 
-let github = "https://github.com"
-let appleGitHub = "\(github)/apple"
-
 let darwin: [Platform] = [.macOS, .iOS, .tvOS, .watchOS, .macCatalyst]
 let xctest: LinkerSetting = .linkedFramework("XCTest", .when(platforms: darwin))
 
@@ -22,11 +19,11 @@ let package = Package(
         .library(name: "AnalyticsMock", targets: ["AnalyticsMock"]),
     ],
     dependencies: [
-        .package(url: "\(appleGitHub)/swift-docc-plugin", from: "1.0.0"),
-        .package(url: "\(appleGitHub)/swift-format", from: "0.50700.0"),
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-format", from: "0.50700.0"),
     ],
     targets: [
-        .target(name: "Analytics", dependencies: []),
+        .target(name: "Analytics"),
         .target(name: "AnalyticsMock", dependencies: ["Analytics"], linkerSettings: [xctest]),
         .testTarget(name: "AnalyticsTests", dependencies: ["Analytics", "AnalyticsMock"]),
     ],
